@@ -36,6 +36,4 @@ build/
 /spring_ioc/.mvn/
 /spring_aop/mvnw
 /spring_aop/mvnw.cmd
-/spring_aop/.mvn/wrapper/maven-wrapper.properties
-/spring_aop/.mvn/wrapper/maven-wrapper.jar
-/spring_aop/.mvn/wrapper/maven-wrapper.jar
+/spring_aop/.mvn/*

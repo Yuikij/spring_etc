@@ -3,7 +3,7 @@ package aki.数据结构;
 public class QueueTest<T> {
     final Object[] items;
 
-    public QueueTest(Object[] items) {
+    public  QueueTest(Object[] items) {
         this.items = items;
     }
 
