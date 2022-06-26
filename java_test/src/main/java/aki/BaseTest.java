@@ -8,6 +8,7 @@ import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.locks.LockSupport;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class BaseTest {
 
@@ -16,6 +17,7 @@ public class BaseTest {
 //        caseTest();
 ////        returnTest();
 //    }
+
 
 
     public static void caseTest() {
@@ -128,12 +130,14 @@ public class BaseTest {
 //        System.out.println((b+c)=="bc");
 
 
-        String a = "taobao".intern();
-                String d="tao";
-        String c="bao";
-        String b =c+d;
-        System.out.println( VM.current().addressOf(a));
-        System.out.println( VM.current().addressOf(b));
+//        String a = "taobao".intern();
+//                String d="tao";
+//        String c="bao";
+//        String b =c+d;
+//        System.out.println( VM.current().addressOf(a));
+//        System.out.println( VM.current().addressOf(b));
+
+        System.out.println(5 + "10");
     }
 }
 
