@@ -5,6 +5,7 @@ import org.openjdk.jol.vm.VM;
 import sun.misc.Unsafe;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.locks.LockSupport;
@@ -136,8 +137,7 @@ public class BaseTest {
 //        String b =c+d;
 //        System.out.println( VM.current().addressOf(a));
 //        System.out.println( VM.current().addressOf(b));
-
-        System.out.println(5 + "10");
+        new ArrayList<>();
     }
 }
 
