@@ -13,6 +13,17 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class BaseTest {
 
+    private volatile BaseTest test;
+
+    public synchronized BaseTest getBaseTest(){
+        if (test==null){
+            test = new BaseTest();
+        }
+        return test;
+    }
+
+
+
 //    public static void main(String[] args) {
 //
 //        caseTest();

@@ -1,4 +1,4 @@
-package aki.JVM.ch3.heap.newsize;
+package aki.JVM.实战java虚拟机.ch3.heap.newsize;
 /** 
  *  -Xmx20m -Xms20m -XX:NewRatio=1 -XX:SurvivorRatio=2 -XX:+PrintGCDetails
  * @author Geym
