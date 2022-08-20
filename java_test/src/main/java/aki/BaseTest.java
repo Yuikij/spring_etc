@@ -1,6 +1,9 @@
 package aki;
 
 //import lombok.Data;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.openjdk.jol.vm.VM;
 import sun.misc.Unsafe;
 
@@ -148,7 +151,44 @@ public class BaseTest {
 //        String b =c+d;
 //        System.out.println( VM.current().addressOf(a));
 //        System.out.println( VM.current().addressOf(b));
-        new ArrayList<>();
+        toStringTest();
+    }
+
+    @EqualsAndHashCode(callSuper = true)
+    @Data
+    @lombok.ToString(callSuper = true)
+    static class ToString extends ToStringF{
+        private String test2;
+    }
+
+    @Data
+    static class ToStringF{
+        private String test1;
+    }
+
+    public static void toStringTest(){
+//        ToString toString = ToString.builder().test1("123").build();
+        ToString toString = new ToString();
+        toString.setTest1("123");
+        toString.setTest2("123");
+        System.out.println(toString);
+    }
+
+
+
+
+
+
+
+
+    public static String foreachTest(){
+        Arrays.asList("1","2","3").forEach(e->{
+            if (e.equals("2")){
+                return;
+            }
+            System.out.println(e);
+        });
+        return "2";
     }
 }
 
