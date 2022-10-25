@@ -26,7 +26,7 @@ import java.util.Map;
 //        s 仅由数字和英文字母组成
 public class Class_5 {
     public static void main(String[] args) {
-        System.out.println(longestPalindrome("babad"));
+        System.out.println(longestPalindrome("aaaa"));
     }
 
     public static String shortestPalindrome(String s) {
@@ -56,36 +56,30 @@ public class Class_5 {
 
     public static String longestPalindrome(String s) {
 
-        int maxLen = 0;
+        int maxLen = 1;
         int len = 0;
         int index = 0;
         for (int i = 1; i < s.length(); i++) {
             char c = s.charAt(i);
-            if (i - len * 2 - 1 < 0) {
-                if (len > maxLen) {
-                    maxLen = len;
-                    index = i;
-                }
-                len = 1;
-            } else if (c == s.charAt(i - len * 2 - 1)) {
-                len++;
-            } else if (i - len * 2 - 2 < 0) {
-                if (len > maxLen) {
-                    maxLen = len;
-                    index = i;
-                }
-                len = 1;
+            if (i - len - 1 < 0) {
+                len = 0;
             } else if (c == s.charAt(i - len - 1)) {
-                len++;
-            } else {
+                len += 2;
                 if (len > maxLen) {
                     maxLen = len;
                     index = i;
                 }
-                len = 1;
             }
-
+            if (len == 0) {
+                if (i - 2 >= 0 && c == s.charAt(i - 2)) {
+                    len = 3;
+                    if (len > maxLen) {
+                        maxLen = len;
+                        index = i;
+                    }
+                }
+            }
         }
-        return s.substring(index - (maxLen % 2 == 0 ? maxLen * 2 : maxLen * 2 - 1), index);
+        return s.substring(index - maxLen + 1, index + 1);
     }
 }
