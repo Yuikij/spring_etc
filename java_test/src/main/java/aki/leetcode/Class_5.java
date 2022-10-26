@@ -29,7 +29,19 @@ public class Class_5 {
         System.out.println(longestPalindrome("aaaa"));
     }
 
-    public static String shortestPalindrome(String s) {
+    private static int getLen(double center, int len, String s) {
+        int left, right;
+        double step = center % 1 == 0 ? 1 : 0.5;
+        left = (int) (center - step);
+        right = (int) (center + step);
+        if (left < 0 || right > s.length() || s.charAt(left) != s.charAt(right)) {
+            return len;
+        } else {
+            return getLen(center, len, s);
+        }
+    }
+
+    private static String shortestPalindrome(String s) {
         Map<Character, List<Integer>> indexToLenMap = new HashMap<>();
         int maxLen = 1;
         int index = 0;
