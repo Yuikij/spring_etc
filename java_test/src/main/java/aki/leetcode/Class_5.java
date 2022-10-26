@@ -26,14 +26,17 @@ import java.util.Map;
 //        s 仅由数字和英文字母组成
 public class Class_5 {
     public static void main(String[] args) {
-        System.out.println(longestPalindrome("aaaa"));
+//        System.out.println(longestPalindrome("aaaa"));
+        System.out.println(getLen(2,0,"babad"));
     }
 
     private static int getLen(double center, int len, String s) {
         int left, right;
-        double step = center % 1 == 0 ? 1 : 0.5;
+        double step = len / 2.0;
         left = (int) (center - step);
         right = (int) (center + step);
+        System.out.println(left);
+        System.out.println(right);
         if (left < 0 || right > s.length() || s.charAt(left) != s.charAt(right)) {
             return len;
         } else {
