@@ -1,4 +1,4 @@
-package aki.thread.Atomic类;
+package aki.thread.AtomicClass;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;

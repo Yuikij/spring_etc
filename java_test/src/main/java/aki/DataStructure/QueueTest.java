@@ -1,4 +1,4 @@
-package aki.数据结构;
+package aki.DataStructure;
 
 public class QueueTest<T> {
     final Object[] items;

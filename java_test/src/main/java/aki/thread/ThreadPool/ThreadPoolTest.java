@@ -1,4 +1,4 @@
-package aki.thread;
+package aki.thread.ThreadPool;
 
 import java.util.ArrayList;
 import java.util.Date;
