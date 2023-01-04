@@ -1,0 +1,13 @@
+{
+  "socketIOUrl": "http://127.0.0.1:9092?ptz_id=",
+  "imageSavePath": "/data/AlarmFiles/",
+  "imageSavePath1": "D:\\456\\",
+  "showLogs": false,
+  "detectEnginePath1": "/home/xzhou/ReleaseFiles/libVtVcaJetson.so.4.10.3.3",
+  "detectEnginePath2": "/home/xzhou/Demo/smoke_detection_ownlib/libVtVcaJetson.so.4.10.3.2",
+  "detectEnginePath3": "D:\\detectEngine\\debug\\VtVca.dll",
+  "detectEnginePath": "/opt/application/resource/NIRDetectMain/libVtVcaJetson.so",
+  "serviceUrl": "http://127.0.0.1:8083",
+  "alarmUrl": "/enbo_ptz/alarm",
+  "fps": "5"
+}
