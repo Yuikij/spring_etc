@@ -8,6 +8,13 @@ package aki.leetcode;
 public class Class_10 {
 
     public static void main(String[] args) {
+/*
+* aaab a*ab
+*
+*
+*
+*
+* */
 
     }
 
