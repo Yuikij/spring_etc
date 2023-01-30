@@ -1,4 +1,4 @@
-package aki.线程安全容器;
+package aki.thread.线程安全容器;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ThreadLocalRandom;
