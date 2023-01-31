@@ -160,8 +160,7 @@ public class HTMLColors {
         LinkedHashMap::new
       ));
   // Inversion only works if values are unique:
-  public static <V, K> Map<V, K>
-  invert(Map<K, V> map) {
+  public static <V, K> Map<V, K> invert(Map<K, V> map) {
     return map.entrySet().stream()
       .collect(Collectors.toMap(
         Map.Entry::getValue,
