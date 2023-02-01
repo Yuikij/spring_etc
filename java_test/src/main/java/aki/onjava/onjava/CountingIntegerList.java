@@ -16,6 +16,8 @@ extends AbstractList<Integer> {
   public CountingIntegerList(int size) {
     this.size = size < 0 ? 0 : size;
   }
+
+  //迭代器会用到
   @Override public Integer get(int index) {
     return index;
   }

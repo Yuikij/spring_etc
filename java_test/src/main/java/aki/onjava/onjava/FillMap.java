@@ -18,8 +18,7 @@ public class FillMap {
         .toMap(Pair::key, Pair::value));
   }
   public static <K, V> Map<K,V>
-  basic(Supplier<K> keyGen,
-        Supplier<V> valueGen, int size) {
+  basic(Supplier<K> keyGen, Supplier<V> valueGen, int size) {
     return Stream.generate(
       () -> Pair.make(keyGen.get(), valueGen.get()))
       .limit(size)
