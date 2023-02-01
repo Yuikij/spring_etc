@@ -151,7 +151,24 @@ public class BaseTest {
 //        String b =c+d;
 //        System.out.println( VM.current().addressOf(a));
 //        System.out.println( VM.current().addressOf(b));
-        toStringTest();
+//        toStringTest();
+
+//        System.out.println(Double.parseDouble("0.0")==0);
+        int a = 1;
+        switch (a){
+            case 1:{
+                System.out.println(1);
+
+            }
+            case 2:{
+                System.out.println(2);
+                break;
+            }
+            default:{
+                System.out.println(3);
+            }
+        }
+        System.out.println("end");
     }
 
     @EqualsAndHashCode(callSuper = true)
