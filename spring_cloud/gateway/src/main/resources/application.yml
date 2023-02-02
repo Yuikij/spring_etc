@@ -1,0 +1,19 @@
+server:
+  port: 9912
+
+spring:
+  application:
+    name: kubo-gateway
+  profiles:
+    active: value,formal,private
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+  cloud:
+    nacos:
+      discovery:
+        server-addr: cloud11.yuisama.top/cloud
+      config:
+        server-addr: cloud11.yuisama.top/cloud
+        file-extension: yml
+        shared-configs:
+          - application-common.${spring.cloud.nacos.config.file-extension}
