@@ -26,11 +26,15 @@ extends AbstractProcessor {
     this.processingEnv = processingEnv;
     elementUtils = processingEnv.getElementUtils();
   }
-  @Override public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment env) {
-    for(Element elem:env.getElementsAnnotatedWith(ExtractInterface.class)) {
+  @Override public boolean process(
+    Set<? extends TypeElement> annotations,
+    RoundEnvironment env) {
+    for(Element elem:env.getElementsAnnotatedWith(
+        ExtractInterface.class)) {
       String interfaceName = elem.getAnnotation(
         ExtractInterface.class).interfaceName();
-      for(Element enclosed : elem.getEnclosedElements()) {
+      for(Element enclosed :
+          elem.getEnclosedElements()) {
         if(enclosed.getKind()
            .equals(ElementKind.METHOD) &&
            enclosed.getModifiers()
@@ -77,7 +81,9 @@ extends AbstractProcessor {
   }
   private String createArgList(
     List<? extends VariableElement> parameters) {
-    String args = parameters.stream().map(p -> p.asType() + " " + p.getSimpleName()).collect(Collectors.joining(", "));
+    String args = parameters.stream()
+      .map(p -> p.asType() + " " + p.getSimpleName())
+      .collect(Collectors.joining(", "));
     return "(" + args + ")";
   }
 }

@@ -1,6 +1,7 @@
 package aki.leetcode;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /*将一个给定字符串 s 根据给定的行数 numRows ，以从上往下、从左到右进行Z 字形排列。
 
@@ -49,33 +50,16 @@ public class Class_6 {
     }
 
     public static String convert(String s, int numRows) {
-        if (numRows <= 1) {
-            return s;
+        List<StringBuilder> rows = new ArrayList<>();
+        for (int i = 0; i < numRows; i++) rows.add(new StringBuilder());
+        int index = 0, flag = -1;
+        for (char c : s.toCharArray()) {
+            rows.get(index).append(c);
+            if (index == 0 || index == numRows - 1) flag = -flag;
+            index += flag;
         }
         StringBuilder res = new StringBuilder();
-        boolean[] flags = new boolean[s.length()];
-        ArrayList<Integer> ints = new ArrayList<>();
-        int index = 0;
-        int step = numRows * 2 - 2;
-        while (index < s.length()) {
-            flags[index] = true;
-            res.append(s.charAt(index));
-            ints.add(index);
-            index += step;
-        }
-        for (int j = 0; j < s.length(); j++) {
-            Integer j_ = ints.get(j);
-            if (j_ - 1 > 0 && !flags[j_ - 1]) {
-                res.append(s.charAt(j_ - 1));
-                ints.add(j_ - 1);
-                flags[j_ - 1] = true;
-            }
-            if (j_ + 1 < s.length() && !flags[j_ + 1]) {
-                res.append(s.charAt(j_ + 1));
-                ints.add(j_ + 1);
-                flags[j_ + 1] = true;
-            }
-        }
+        for(StringBuilder row : rows) res.append(row);
         return res.toString();
     }
 }
