@@ -3,7 +3,7 @@
 // We make no guarantees that this code is fit for any purpose.
 // Visit http://OnJava8.com for more book information.
 // "Flyweight" Maps and Lists of sample data
-// {java onjava.Countries}
+// {java aki.onjava.onjava.Countries}
 package aki.onjava.onjava;
 import java.util.*;
 

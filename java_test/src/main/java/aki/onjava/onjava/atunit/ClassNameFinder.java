@@ -2,7 +2,7 @@
 // (c)2021 MindView LLC: see Copyright.txt
 // We make no guarantees that this code is fit for any purpose.
 // Visit http://OnJava8.com for more book information.
-// {java onjava.atunit.ClassNameFinder}
+// {java aki.onjava.onjava.atunit.ClassNameFinder}
 package aki.onjava.onjava.atunit;
 
 import java.io.ByteArrayInputStream;

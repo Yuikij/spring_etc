@@ -3,7 +3,7 @@
 // We make no guarantees that this code is fit for any purpose.
 // Visit http://OnJava8.com for more book information.
 // Unlimited-length Map containing sample data
-// {java onjava.CountMap}
+// {java aki.onjava.onjava.CountMap}
 package aki.onjava.onjava;
 
 import java.util.*;
