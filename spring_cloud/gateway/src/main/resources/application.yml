@@ -11,9 +11,7 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: cloud11.yuisama.top/cloud
+        server-addr: 192.168.2.5:8848
       config:
-        server-addr: cloud11.yuisama.top/cloud
-        file-extension: yml
-        shared-configs:
-          - application-common.${spring.cloud.nacos.config.file-extension}
+        import: optional:nacos:1
+        server-addr: 192.168.2.5:8848
