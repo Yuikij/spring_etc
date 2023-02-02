@@ -3,7 +3,7 @@
 // We make no guarantees that this code is fit for any purpose.
 // Visit http://OnJava8.com for more book information.
 // An annotation-based unit-test framework
-// {java onjava.atunit.AtUnit}
+// {java aki.onjava.onjava.atunit.AtUnit}
 package aki.onjava.onjava.atunit;
 
 import aki.onjava.onjava.*;
@@ -22,10 +22,8 @@ public class AtUnit implements ProcessFiles.Strategy {
   static List<String> failedTests= new ArrayList<>();
   static long testsRun = 0;
   static long failures = 0;
-  public static void
-  main(String[] args) throws Exception {
-    ClassLoader.getSystemClassLoader()
-      .setDefaultAssertionStatus(true); // Enable assert
+  public static void main(String[] args) throws Exception {
+    ClassLoader.getSystemClassLoader().setDefaultAssertionStatus(true); // Enable assert
     new ProcessFiles(new AtUnit(), "class").start(args);
     if(failures == 0)
       System.out.println("OK (" + testsRun + " tests)");

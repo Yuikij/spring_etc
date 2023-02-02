@@ -3,7 +3,7 @@
 // We make no guarantees that this code is fit for any purpose.
 // Visit http://OnJava8.com for more book information.
 // List of any length, containing sample data
-// {java onjava.CountingIntegerList}
+// {java aki.onjava.onjava.CountingIntegerList}
 package aki.onjava.onjava;
 
 import java.util.AbstractList;
