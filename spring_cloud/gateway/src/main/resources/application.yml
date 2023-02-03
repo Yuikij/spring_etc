@@ -11,8 +11,8 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: z32n237735.wicp.vip:33486
+        server-addr: 172.23.104.184
       config:
-        server-addr: z32n237735.wicp.vip:33486
+        server-addr: 172.23.104.184
         import-check:
           enabled: false
