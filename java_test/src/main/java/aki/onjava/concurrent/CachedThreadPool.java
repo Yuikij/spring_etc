@@ -5,6 +5,11 @@ package aki.onjava.concurrent;// concurrent/CachedThreadPool.java
 import java.util.concurrent.*;
 import java.util.stream.*;
 
+/**
+ * Executors.newCachedThreadPool
+ *  - execute
+ *  - shutdown
+ */
 public class CachedThreadPool {
   public static void main(String[] args) {
     ExecutorService exec = Executors.newCachedThreadPool();

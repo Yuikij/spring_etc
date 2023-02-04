@@ -6,6 +6,10 @@ import java.util.*;
 import java.util.concurrent.*;
 import java.util.stream.*;
 
+/**
+ * Future
+ * Callable
+ */
 public class CachedThreadPool3 {
   //提取结果
   public static Integer extractResult(Future<Integer> f) {
@@ -21,7 +25,7 @@ public class CachedThreadPool3 {
     // new 10 个 CountingTask
     List<CountingTask> tasks = IntStream.range(0, 10).mapToObj(CountingTask::new).collect(Collectors.toList());
 
-    //CountingTask.call
+    //CountingTask[Callable].call
     List<Future<Integer>> futures = exec.invokeAll(tasks);
 
     //Future get 获取任务执行结果

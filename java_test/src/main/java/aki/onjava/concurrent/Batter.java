@@ -5,6 +5,10 @@ package aki.onjava.concurrent;// concurrent/Batter.java
 import java.util.concurrent.*;
 import aki.onjava.onjava.Nap;
 
+/**
+ * CompletableFuture
+ *  - completedFuture
+ */
 public class Batter {
   static class Eggs {}
   static class Milk {}

@@ -5,6 +5,9 @@ package aki.onjava.concurrent;// concurrent/CachedThreadPool2.java
 import java.util.concurrent.*;
 import java.util.stream.*;
 
+/**
+ *
+ */
 public class CachedThreadPool2 {
   public static void main(String[] args) {
     ExecutorService exec =

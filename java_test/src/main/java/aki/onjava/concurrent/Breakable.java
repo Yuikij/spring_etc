@@ -4,6 +4,9 @@ package aki.onjava.concurrent;// concurrent/Breakable.java
 // Visit http://OnJava8.com for more book information.
 import java.util.concurrent.*;
 
+/**
+ *  work failcount次 抛异常
+ */
 public class Breakable {
   String id;
   private int failcount;

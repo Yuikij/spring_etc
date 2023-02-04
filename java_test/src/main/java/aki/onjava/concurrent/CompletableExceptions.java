@@ -4,12 +4,20 @@ package aki.onjava.concurrent;// concurrent/CompletableExceptions.java
 // Visit http://OnJava8.com for more book information.
 import java.util.concurrent.*;
 
+
+/**
+ *    CompletableFuture   get    Exception
+ *
+ *    isCompletedExceptionally
+ *    isDone
+ *    completeExceptionally
+ */
 public class CompletableExceptions {
-  static CompletableFuture<Breakable>
-  test(String id, int failcount) {
+
+  // Breakable::work 第failcount次抛出异常，最多4次
+  static CompletableFuture<Breakable> test(String id, int failcount) {
     return
-      CompletableFuture.completedFuture(
-        new Breakable(id, failcount))
+      CompletableFuture.completedFuture(new Breakable(id, failcount))
           .thenApply(Breakable::work)
           .thenApply(Breakable::work)
           .thenApply(Breakable::work)
@@ -28,19 +36,19 @@ public class CompletableExceptions {
     } catch(Exception e) {
       System.out.println(e.getMessage());
     }
+
     // Test for exceptions:
     System.out.println(
       test("G", 2).isCompletedExceptionally());
     // Counts as "done":
     System.out.println(test("H", 2).isDone());
-    // Force an exception:
+//     Force an exception:
     CompletableFuture<Integer> cfi =
       new CompletableFuture<>();
     System.out.println("done? " + cfi.isDone());
-    cfi.completeExceptionally(
-      new RuntimeException("forced"));
+    cfi.completeExceptionally(new RuntimeException("forced"));
     try {
-      cfi.get();
+      System.out.println("cfi.get():"+cfi.get());
     } catch(Exception e) {
       System.out.println(e.getMessage());
     }

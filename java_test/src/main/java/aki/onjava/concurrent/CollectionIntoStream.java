@@ -6,6 +6,9 @@ import aki.onjava.onjava.*;
 import java.util.*;
 import java.util.stream.*;
 
+/**
+ * Stream
+ */
 public class CollectionIntoStream {
   public static void main(String[] args) {
     List<String> strings =

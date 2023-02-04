@@ -8,6 +8,11 @@ import java.util.stream.*;
 
 import aki.onjava.onjava.Nap;
 
+/**
+ * CompletableFuture
+ *  - thenApplyAsync
+ *
+ */
 public class Baked {
     static class Pan {
     }

@@ -8,13 +8,18 @@ import static aki.onjava.concurrent.CompletableUtilities.showr;
 import static aki.onjava.concurrent.CompletableUtilities.voidr;
 
 
+/**
+ * todo
+ */
 public class CompletableOperations {
   static CompletableFuture<Integer> cfi(int i) {
     return
       CompletableFuture.completedFuture(
         Integer.valueOf(i));
   }
+
   public static void main(String[] args) {
+    //get
     showr(cfi(1)); // Basic test
     voidr(cfi(2).runAsync(() ->
       System.out.println("runAsync")));
