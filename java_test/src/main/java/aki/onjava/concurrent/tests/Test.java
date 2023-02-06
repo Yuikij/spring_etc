@@ -11,6 +11,7 @@ import java.util.concurrent.ExecutionException;
  * - thenApplyAsync: 在当前线程中异步处理上个任务，并返回结果
  * - thenApply: 同步
  * - thenAccept: 执行完成后，接收返回结果，不返回
+ *  - 上个任务抛出异常就不执行下一个then*
  * - get:　阻塞获取异步结果
  *
  * - complete(T):  主动完成
@@ -18,7 +19,7 @@ import java.util.concurrent.ExecutionException;
  *
  * - exceptionally((ex) -> ()): thenApplyAsync等如果异常了会进入
  * - handle((result, fail) -> ()): 都会进入
- * - whenComplete
+ * - whenComplete: 没有返回值
  */
 public class Test {
     public static void main(String[] args) throws ExecutionException, InterruptedException {

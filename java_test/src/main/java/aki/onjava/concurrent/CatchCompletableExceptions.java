@@ -57,8 +57,8 @@ public class CatchCompletableExceptions {
     public static void main(String[] args) {
         System.out.println("**** Failure Mode ****");
         handleException(2);
-//        System.out.println("**** Success Mode ****");
-//        handleException(0);
+        System.out.println("**** Success Mode ****");
+        handleException(0);
     }
 }
 /* Output:
