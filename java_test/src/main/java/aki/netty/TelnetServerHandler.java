@@ -22,13 +22,14 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
 import java.net.InetAddress;
+import java.util.Arrays;
 import java.util.Date;
 
 /**
  * Handles a server-side channel.
  */
 @Sharable
-public class TelnetServerHandler extends SimpleChannelInboundHandler<String> {
+public class TelnetServerHandler extends SimpleChannelInboundHandler<byte[]> {
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
@@ -39,19 +40,19 @@ public class TelnetServerHandler extends SimpleChannelInboundHandler<String> {
     }
 
     @Override
-    public void channelRead0(ChannelHandlerContext ctx, String request) throws Exception {
+    public void channelRead0(ChannelHandlerContext ctx, byte[] bytes) throws Exception {
         // Generate and write a response.
         String response;
         boolean close = false;
-        if (request.isEmpty()) {
-            response = "Please type something.\r\n";
-            System.out.println(response);
-        } else if ("bye".equals(request.toLowerCase())) {
-            response = "Have a good day!\r\n";
-            close = true;
-        } else {
-            response = "Did you say '" + request + "'?\r\n";
-        }
+//        if (request.isEmpty()) {
+//            response = "Please type something.\r\n";
+//            System.out.println(response);
+//        } else if ("bye".equals(request.toLowerCase())) {
+//            response = "Have a good day!\r\n";
+//            close = true;
+//        } else {
+            response = "Did you say '" + Arrays.toString(bytes) + "'?\r\n";
+//        }
 
         System.out.println(response);
         // We do not need to write a ChannelBuffer here.
