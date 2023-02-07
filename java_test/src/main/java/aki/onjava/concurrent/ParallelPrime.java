@@ -9,6 +9,14 @@ import java.io.*;
 import java.nio.file.*;
 import aki.onjava.onjava.Timer;
 
+/**
+ *
+ * Stream.parallel
+ *
+ *
+ *
+ *
+ */
 public class ParallelPrime {
   static final int COUNT = 100_000;
   public static boolean isPrime(long n) {
@@ -26,8 +34,9 @@ public class ParallelPrime {
         .mapToObj(Long::toString)
         .collect(Collectors.toList());
     System.out.println(timer.duration());
-    Files.write(Paths.get("primes.txt"), primes,
-      StandardOpenOption.CREATE);
+    System.out.println(primes);
+//    Files.write(Paths.get("primes.txt"), primes,
+//      StandardOpenOption.CREATE);
   }
 }
 /* Output:
