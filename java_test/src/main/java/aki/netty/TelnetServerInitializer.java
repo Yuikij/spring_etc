@@ -20,6 +20,8 @@ import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.handler.codec.DelimiterBasedFrameDecoder;
 import io.netty.handler.codec.Delimiters;
+import io.netty.handler.codec.bytes.ByteArrayDecoder;
+import io.netty.handler.codec.bytes.ByteArrayEncoder;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
 import io.netty.handler.ssl.SslContext;
@@ -53,6 +55,8 @@ public class TelnetServerInitializer extends ChannelInitializer<SocketChannel> {
         // the encoder and decoder are static as these are sharable
         pipeline.addLast(DECODER);
         pipeline.addLast(ENCODER);
+        pipeline.addLast(new ByteArrayEncoder());
+        pipeline.addLast(new ByteArrayDecoder());
 
         // and then business logic.
         pipeline.addLast(SERVER_HANDLER);

@@ -19,15 +19,17 @@ import io.netty.channel.ChannelHandler.Sharable;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
+import java.util.Arrays;
+
 /**
  * Handles a client-side channel.
  */
 @Sharable
-public class TelnetClientHandler extends SimpleChannelInboundHandler<String> {
+public class TelnetClientHandler extends SimpleChannelInboundHandler<byte[]> {
 
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
-        System.err.println(msg);
+    protected void channelRead0(ChannelHandlerContext ctx, byte[] msg) throws Exception {
+        System.err.println(Arrays.toString(msg));
     }
 
     @Override

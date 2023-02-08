@@ -30,7 +30,7 @@ import java.util.Date;
  * Handles a server-side channel.
  */
 @Sharable
-public class TelnetServerHandler extends SimpleChannelInboundHandler<ByteBuf> {
+public class TelnetServerHandler extends SimpleChannelInboundHandler<byte[]> {
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
@@ -41,7 +41,7 @@ public class TelnetServerHandler extends SimpleChannelInboundHandler<ByteBuf> {
     }
 
     @Override
-    public void channelRead0(ChannelHandlerContext ctx, ByteBuf request) throws Exception {
+    public void channelRead0(ChannelHandlerContext ctx, byte[] request) throws Exception {
         // Generate and write a response.
         String response;
         boolean close = false;
@@ -59,7 +59,7 @@ public class TelnetServerHandler extends SimpleChannelInboundHandler<ByteBuf> {
         // We know the encoder inserted at TelnetPipelineFactory will do the conversion.
         ChannelFuture future = ctx.write(response);
         System.out.println("-----------------");
-        System.out.println(Arrays.toString(request.array()));
+        System.out.println(Arrays.toString(request));
 
         // Close the connection after sending 'Have a good day!'
         // if the client has sent 'bye'.
