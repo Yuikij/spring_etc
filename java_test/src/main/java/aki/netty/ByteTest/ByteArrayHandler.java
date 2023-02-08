@@ -28,7 +28,7 @@ public class ByteArrayHandler extends SimpleChannelInboundHandler<ByteBuf> {
             byte[] array = readBytes(msg, 20);
             System.out.println("array1: " + Hex.encodeHexString(array));
             if (array.length == 1 && Byte.toUnsignedLong(array[0]) == 0Xaa) {
-                String hexString = "010100000001840A";
+                String hexString = "010300000001840A";
                 long value = Long.parseLong(hexString, 16);
                 ByteBuf data = Unpooled.copyLong(value);
                 ctx.writeAndFlush(data);
