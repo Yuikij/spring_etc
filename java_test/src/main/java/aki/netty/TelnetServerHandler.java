@@ -15,6 +15,7 @@
  */
 package aki.netty;
 
+import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandler.Sharable;
@@ -29,7 +30,7 @@ import java.util.Date;
  * Handles a server-side channel.
  */
 @Sharable
-public class TelnetServerHandler extends SimpleChannelInboundHandler<byte[]> {
+public class TelnetServerHandler extends SimpleChannelInboundHandler<ByteBuf> {
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
@@ -40,24 +41,25 @@ public class TelnetServerHandler extends SimpleChannelInboundHandler<byte[]> {
     }
 
     @Override
-    public void channelRead0(ChannelHandlerContext ctx, byte[] bytes) throws Exception {
+    public void channelRead0(ChannelHandlerContext ctx, ByteBuf request) throws Exception {
         // Generate and write a response.
         String response;
         boolean close = false;
+
 //        if (request.isEmpty()) {
-//            response = "Please type something.\r\n";
-//            System.out.println(response);
+        response = "Please type something.\r\n";
 //        } else if ("bye".equals(request.toLowerCase())) {
 //            response = "Have a good day!\r\n";
 //            close = true;
 //        } else {
-            response = "Did you say '" + Arrays.toString(bytes) + "'?\r\n";
+//            response = "Did you say '" + request + "'?\r\n";
 //        }
 
-        System.out.println(response);
         // We do not need to write a ChannelBuffer here.
         // We know the encoder inserted at TelnetPipelineFactory will do the conversion.
         ChannelFuture future = ctx.write(response);
+        System.out.println("-----------------");
+        System.out.println(Arrays.toString(request.array()));
 
         // Close the connection after sending 'Have a good day!'
         // if the client has sent 'bye'.
