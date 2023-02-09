@@ -1,0 +1,25 @@
+server:
+  port: 9913
+spring:
+  rabbitmq:
+    host: 172.23.104.184
+    port: 5672
+    username: user
+    password: password
+  config:
+    import: nacos:gateway.yml,nacos:kubo-gateway-value.yml
+  application:
+    name: kubo-common
+  profiles:
+    active: value,formal,private
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 172.23.104.184
+      config:
+        server-addr: 172.23.104.184
+        file-extension: yml
+        username: nacos
+        password: nacos
