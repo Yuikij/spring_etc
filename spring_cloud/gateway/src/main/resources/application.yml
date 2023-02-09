@@ -1,7 +1,8 @@
 server:
   port: 9912
-
 spring:
+  config:
+    import: nacos:gateway.yml,nacos:kubo-gateway-value.yml
   application:
     name: kubo-gateway
   profiles:
@@ -14,5 +15,6 @@ spring:
         server-addr: 172.23.104.184
       config:
         server-addr: 172.23.104.184
-        import-check:
-          enabled: false
+        file-extension: yml
+        username: nacos
+        password: nacos
