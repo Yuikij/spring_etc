@@ -15,23 +15,24 @@ public class ReadRaw {
     private static int imageDataLength;
 
     public static void main(String[] args) throws Exception {
-        test();
+//        test();
 //        File file = new File("C:\\Users\\SouKon\\Desktop\\raw\\data.raw");
-//        byte[] rawData;
-//        InputStream inputStream = HttpClientUtils.getStreamForShiHui("http://" + "192.168.5.92" + "/raw",
-//                "/raw", "admin", "admin");
-//        while (true) {
-//            int length = ParseFARawDataHeader(inputStream);
-//            if (length!=655404){
-//                log.info("length-err:"+length);
-//            }
-//            if (length > 0) {
-//                rawData = ParseVSAVFrame(inputStream, length);
-//            } else {
-//                rawData = null;
-//            }
-////            log.info(Arrays.toString(rawData));
-//        }
+        byte[] rawData;
+        InputStream inputStream = HttpClientUtils.getStreamForShiHui("http://" + "192.168.5.123" + "/raw",
+                "/raw", "admin", "admin");
+        while (true) {
+            System.out.println("enter loop");
+            int length = ParseFARawDataHeader(inputStream);
+            if (length!=655404){
+                log.info("length-err:"+length);
+            }
+            if (length > 0) {
+                rawData = ParseVSAVFrame(inputStream, length);
+            } else {
+                rawData = null;
+            }
+            log.info(Arrays.toString(rawData));
+        }
 
     }
 

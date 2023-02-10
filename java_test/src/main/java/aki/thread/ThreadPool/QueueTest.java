@@ -1,20 +1,11 @@
 package aki.thread.ThreadPool;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.TreeSet;
 import java.util.concurrent.*;
 
-public class ThreadPoolTest {
-
+public class QueueTest {
 
     public static void main(String[] args) throws InterruptedException, ExecutionException {
-
-
-
         test3();
-
     }
 
     public static void test4() throws ExecutionException, InterruptedException {

@@ -34,13 +34,12 @@ public class MessageApplication {
         };
     }
 
-//    @Bean
-//    public Consumer<Person> log2() {
-//        return person -> {
-//            System.out.println("Received2: " + person);
-//        };
-//    }
-
+    @Bean
+    public Consumer<String> log2() {
+        return response -> {
+            System.out.println("Received: " + response);
+        };
+    }
 
     public static class Person {
         private String name;

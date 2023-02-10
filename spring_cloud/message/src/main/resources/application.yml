@@ -18,8 +18,10 @@ spring:
   cloud:
     stream:
       bindings:
-        input:
+        log-in-0:
           group: hello
+        log2-in-0:
+          group: hello1
     nacos:
       discovery:
         server-addr: 172.23.104.184
