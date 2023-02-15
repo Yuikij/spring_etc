@@ -14,8 +14,6 @@ public class ConditionTest {
             // 业务方法....
             // 1.进入等待状态
 
-
-
             new Thread(()->{
                 lock.lock();
                 try {

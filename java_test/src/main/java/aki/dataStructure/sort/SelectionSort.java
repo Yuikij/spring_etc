@@ -1,4 +1,4 @@
-package aki.DataStructure.算法.排序;
+package aki.dataStructure.sort;
 
 public class SelectionSort {
     public static void main(String[] args) {

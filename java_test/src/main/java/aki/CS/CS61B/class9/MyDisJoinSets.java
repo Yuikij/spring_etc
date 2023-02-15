@@ -1,4 +1,4 @@
-package aki.CS.CS61B.Class9;
+package aki.cs.cs61b.class9;
 
 public class MyDisJoinSets implements DisjointSets {
     public MyDisJoinSets(int size) {
