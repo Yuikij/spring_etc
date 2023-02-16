@@ -1,4 +1,4 @@
-package aki.thread.waitNotify;
+package aki.thread.producerAndConsumer;
 
 public class NotifyDemo {
     public static void main(String[] args) {

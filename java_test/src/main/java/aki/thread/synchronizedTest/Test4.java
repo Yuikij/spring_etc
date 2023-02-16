@@ -1,18 +1,13 @@
-package aki.thread.waitNotify;
+package aki.thread.synchronizedTest;
 
-public class Test3 {
-    private static final Integer a = 0;
-    private static final Integer b = 0;
-    private static final Integer a2 = new Integer(0);
-    private static final Integer b2 = new Integer(0);
-    private static final Object a1 = new Object();
-    private static final Object b1 = new Object();
-
+public class Test4 {
+    private static Integer a = 0;
+    private static Integer b = 0;
 
     private static class Thread2 extends Thread {
         @Override
         public void run() {
-            synchronized (a2){
+            synchronized (a){
                 try {
                     for (int i = 0; i < 5; i++) {
                         System.out.println(Thread.currentThread().getName() + " loop " + i);
@@ -27,7 +22,7 @@ public class Test3 {
     private static class Thread1 extends Thread {
         @Override
         public void run() {
-            synchronized (b2){
+            synchronized (b){
                 try {
                     for (int i = 0; i < 5; i++) {
                         System.out.println(Thread.currentThread().getName() + " loop " + i);
@@ -42,6 +37,7 @@ public class Test3 {
 
 
     public static void main(String[] args){
+        System.out.println(a==b);
         new Thread1().start();
         new Thread2().start();
     }

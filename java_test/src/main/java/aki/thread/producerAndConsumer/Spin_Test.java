@@ -1,9 +1,11 @@
-package aki.thread.生产者消费者;
+package aki.thread.producerAndConsumer;
+
+import aki.thread.commonClass.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Test4 {
+public class Spin_Test {
 
     static class Queue {
         static volatile List<Integer> list = new ArrayList<>();
@@ -31,27 +33,25 @@ public class Test4 {
 
 
         public static void main(String[] args) {
+            Runnable set = () -> {
+                for (int i = 0; i < 10000; i++) {
+                    Queue.set(i);
+                }
+            };
 
-            new Thread(() -> {
+            Runnable get = () -> {
                 while (true) {
                     Integer integer = Queue.get();
                     if (integer != null) {
                         System.out.println(integer);
                     }
                 }
-            }).start();
-
-            new Thread(() -> {
-//                try {
-//                    Thread.sleep(10000);
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
-                for (int i = 0; i < 10000; i++) {
-                    Queue.set(i);
-                }
-            }).start();
+            };
+            Utils.multiRun(100, set);
+            Utils.multiRun(100, get);
 
         }
+
+
     }
 }

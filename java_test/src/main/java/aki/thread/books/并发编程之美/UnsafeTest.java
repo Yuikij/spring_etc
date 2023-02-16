@@ -1,4 +1,4 @@
-package aki.thread.并发编程之美;
+package aki.thread.books.并发编程之美;
 
 import sun.misc.Unsafe;
 

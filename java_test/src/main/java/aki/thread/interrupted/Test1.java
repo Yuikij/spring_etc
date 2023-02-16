@@ -1,5 +1,7 @@
 package aki.thread.interrupted;
 
+import aki.thread.commonClass.utils.Utils;
+
 import java.util.concurrent.locks.LockSupport;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -7,17 +9,16 @@ public class Test1 {
     final static Object object = new Object();
     static ReentrantLock lock = new ReentrantLock();
 
+    static Utils utils = new Utils();
+
     public static void main(String[] args) throws InterruptedException {
 
         new Thread(() -> {
             lock.lock();
-            System.out.println("Thread1");
-            try {
-                Thread.sleep(10000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            utils.log("lock");
+            Utils.sleep(10000);
             lock.unlock();
+            utils.log("unlock");
         }).start();
 
 
@@ -32,13 +33,11 @@ public class Test1 {
 //            中断不抛出异常
 //            LockSupport.park();
 //            Thread.interrupted();
-            System.out.println("Thread2,获得锁");
-            try {
-                Thread.sleep(10000);
-                System.out.println("end sleep");
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            lock.lock();
+            utils.log("Thread2,获得锁");
+            Utils.sleep(10000);
+            utils.log("end sleep");
+            lock.unlock();
 //            try {
 //                synchronized (object){
 //                    object.wait(10000);
@@ -46,24 +45,15 @@ public class Test1 {
 //            } catch (InterruptedException e) {
 //                e.printStackTrace();
 //            }
-
         });
 //
-
         thread.start();
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        Utils.sleep(2000);
 //        lock.lockInterruptibly();
 //        System.out.println("interrupted");
-        System.out.println(thread.isInterrupted());
-        ;
+        utils.log("thread.isInterrupted()", thread.isInterrupted());
         thread.interrupt();
-
-        System.out.println(thread.isInterrupted());
-
+        utils.log("thread.isInterrupted()", thread.isInterrupted());
 
 
     }

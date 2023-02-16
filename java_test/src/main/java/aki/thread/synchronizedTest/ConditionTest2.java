@@ -1,4 +1,4 @@
-package aki.thread.waitNotify;
+package aki.thread.synchronizedTest;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;

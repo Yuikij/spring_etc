@@ -1,6 +1,28 @@
 package aki.thread.commonClass.utils;
 
 public class Utils {
+
+    boolean isLog = true;
+
+    public Utils() {
+    }
+
+    public Utils(boolean isLog) {
+        this.isLog = isLog;
+    }
+
+    public void log(String msg, Object result) {
+        if (isLog) {
+            print(msg, result);
+        }
+    }
+
+    public void log(Object result) {
+        if (isLog) {
+            print(result);
+        }
+    }
+
     public static void sleep(long millis) {
         try {
             Thread.sleep(millis);
@@ -22,7 +44,16 @@ public class Utils {
     }
 
     public static void print(String msg, Object result) {
-        System.out.printf("------%s : %s------\n", msg, result);
+        if (msg == null) {
+            print(result);
+        } else {
+            System.out.printf("------%s : %s------\n", msg, result);
+        }
+
+    }
+
+    public static void print(Object result) {
+        System.out.printf("------%s------\n", result);
     }
 
     public static void block(Object o, Runnable runnable) {
@@ -55,6 +86,12 @@ public class Utils {
             o.wait();
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public static void multiRun(int times, Runnable runnable) {
+        for (int i = 0; i < times; i++) {
+            new Thread(runnable).start();
         }
     }
 
