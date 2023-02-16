@@ -92,16 +92,12 @@ public class ThreadPoolExecutorTest {
         }
 
 
+        //打印后续状态
         while (true) {
             sleep(1000);
             printStatus();
         }
 
-//        System.out.println("--------执行完毕---------");
-//        System.out.println(executedNums);
-//        List<Integer> fullNums = getFullNums();
-//        fullNums.removeAll(executedNums);
-//        System.out.println(executedNums);
     }
 
     private static void sleep(long time) {

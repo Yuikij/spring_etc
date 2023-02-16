@@ -20,4 +20,4 @@ UPDATE t set d=d+1  where id = 15;
 
 ROLLBACK
 
-    COMMIT
+COMMIT
