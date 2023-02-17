@@ -1,5 +1,7 @@
 package aki.thread.ThreadPool;
 
+import aki.thread.commonClass.utils.Utils;
+
 import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -42,9 +44,9 @@ public class ThreadPoolExecutorTest {
 
     public static Instant start;
 
-    static ThreadPoolExecutor executor = new ThreadPoolExecutor(10,
+    static ThreadPoolExecutor executor = new IThreadPoolExecutor(10,
             40, 10,
-            TimeUnit.SECONDS, new LinkedBlockingQueue<>(1),
+            TimeUnit.SECONDS, new ArrayBlockingQueue<>(1),
 //            Executors.defaultThreadFactory(), new ThreadPoolExecutor.DiscardOldestPolicy());
             Executors.defaultThreadFactory(), new ThreadPoolExecutor.CallerRunsPolicy());
 

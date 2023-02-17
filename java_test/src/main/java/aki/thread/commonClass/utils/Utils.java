@@ -1,6 +1,18 @@
 package aki.thread.commonClass.utils;
 
+import java.lang.reflect.Field;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class Utils {
+    private static final int COUNT_BITS = Integer.SIZE - 3;
+    private static final int RUNNING = -1 << COUNT_BITS;
+    private static final int SHUTDOWN = 0 << COUNT_BITS;
+    private static final int STOP = 1 << COUNT_BITS;
+    private static final int TIDYING = 2 << COUNT_BITS;
+    private static final int TERMINATED = 3 << COUNT_BITS;
 
     boolean isLog = true;
 
@@ -92,6 +104,54 @@ public class Utils {
     public static void multiRun(int times, Runnable runnable) {
         for (int i = 0; i < times; i++) {
             new Thread(runnable).start();
+        }
+    }
+
+    //------------------------------反射
+    public static Object getPrivateField(Object object, String fieldName) {
+        Class cls = object.getClass();
+        return getPrivateField(object, fieldName, cls);
+
+    }
+
+    public static Object getPrivateField(Object object, String fieldName, Class<?> cls) {
+        try {
+            if (cls.equals(Object.class)) {
+                return null;
+            }
+            // 获取 fieldName字段
+            Field nameField = cls.getDeclaredField(fieldName);
+            // 设置字段可访问
+            nameField.setAccessible(true);
+            return nameField.get(object);
+        } catch (Exception e) {
+            return getPrivateField(object, fieldName, cls.getSuperclass());
+        }
+    }
+//------------------------------ThreadPool
+
+    private static final int CAPACITY = (1 << COUNT_BITS) - 1;
+
+    private static int runStateOf(int c) {
+        return c & ~CAPACITY;
+    }
+
+
+    public static String getThreadPoolState(ThreadPoolExecutor threadPoolExecutor) {
+        String state = "null";
+        try {
+            AtomicInteger ctl = (AtomicInteger) getPrivateField(threadPoolExecutor, "ctl");
+            Map<Integer, String> map = new HashMap<Integer, String>() {{
+                put(RUNNING, "RUNNING");
+                put(SHUTDOWN, "SHUTDOWN");
+                put(STOP, "STOP");
+                put(TIDYING, "TIDYING");
+                put(TERMINATED, "TERMINATED");
+            }};
+            int rs = runStateOf(ctl.get());
+            return map.get(rs);
+        } catch (Exception e) {
+            return state;
         }
     }
 
