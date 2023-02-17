@@ -1,6 +1,5 @@
-package aki.string.dynamicProxy.cglib;
+package aki.dynamicProxy.cglib;
 
-import aki.string.dynamicProxy.jdk.JdkProxyTest;
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;
