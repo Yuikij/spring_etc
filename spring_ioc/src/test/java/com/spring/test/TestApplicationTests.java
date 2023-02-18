@@ -2,6 +2,7 @@ package com.spring.test;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.util.StopWatch;
 
 import javax.annotation.Resource;
 import java.util.concurrent.Executor;
@@ -12,6 +13,18 @@ class TestApplicationTests {
 
     @Resource(name = "threadPool")
     private Executor threadPool;
+
+    @Test
+    void testStopWatch() throws InterruptedException {
+        StopWatch stopWatch = new StopWatch();
+        stopWatch.start();
+        Thread.sleep(1000);
+        stopWatch.stop();
+        stopWatch.start();
+        Thread.sleep(1000);
+        stopWatch.stop();
+        System.out.println(stopWatch);
+    }
 
     @Test
     void contextLoads() {

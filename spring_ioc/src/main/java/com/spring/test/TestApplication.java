@@ -5,25 +5,27 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.EnableScheduling;
+
+import javax.annotation.Resource;
 
 @SpringBootApplication
+@EnableScheduling
 public class TestApplication {
 
-//
+
 //    @Autowired
 //    private sLock sLock;
 
+//    @Resource
+//    private Lock lock;
+
     @Autowired
-    private Lock lock;
+    private Lock sLock;
 
     public static void main(String[] args) {
-        int a = 1;
-        char b= 1;
         SpringApplication.run(TestApplication.class, args);
     }
-
-
-
 
 }
 

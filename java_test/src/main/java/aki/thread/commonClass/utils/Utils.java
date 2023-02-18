@@ -64,9 +64,18 @@ public class Utils {
 
     }
 
+    /**
+     * ------------------------------日志----------------------
+     */
+
     public static void print(Object result) {
         System.out.printf("------%s------\n", result);
     }
+
+
+    /**
+     * ------------------------------线程----------------------
+     */
 
     public static void block(Object o, Runnable runnable) {
         new Thread(() -> {
@@ -107,9 +116,13 @@ public class Utils {
         }
     }
 
-    //------------------------------反射
+    /**
+     * ------------------------------反射----------------------
+     */
+
+
     public static Object getPrivateField(Object object, String fieldName) {
-        Class cls = object.getClass();
+        Class<?> cls = object.getClass();
         return getPrivateField(object, fieldName, cls);
 
     }
@@ -128,7 +141,10 @@ public class Utils {
             return getPrivateField(object, fieldName, cls.getSuperclass());
         }
     }
-//------------------------------ThreadPool
+
+    /**
+     * ------------------------------线程池----------------------
+     */
 
     private static final int CAPACITY = (1 << COUNT_BITS) - 1;
 
@@ -136,7 +152,9 @@ public class Utils {
         return c & ~CAPACITY;
     }
 
-
+    /**
+     * 获取线程池状态
+     */
     public static String getThreadPoolState(ThreadPoolExecutor threadPoolExecutor) {
         String state = "null";
         try {
