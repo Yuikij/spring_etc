@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 @SpringBootApplication
 @RestController
@@ -27,19 +28,18 @@ public class MessageApplication {
         return String::toUpperCase;
     }
 
-    @Bean
-    public Consumer<Person> log() {
-        return person -> {
-            System.out.println("Received: " + person);
-        };
-    }
+//    @Bean
+//    public Consumer<String> log2() {
+//        return response -> {
+//            System.out.println("Received: " + response);
+//        };
+//    }
+//    @Bean
+//    public Supplier<String> css() {
+//        return () -> "test Supplier";
+//    }
 
-    @Bean
-    public Consumer<String> log2() {
-        return response -> {
-            System.out.println("Received: " + response);
-        };
-    }
+
 
     public static class Person {
         private String name;

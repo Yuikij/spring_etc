@@ -18,10 +18,13 @@ spring:
   cloud:
     stream:
       bindings:
-        log-in-0:
-          group: hello
+#        css-out-0:
+#          destination: css_test
+#          binder: rabbit
+#          group: css_test_queue
         log2-in-0:
-          group: hello1
+#          group: hello1
+          destination: hello1
     nacos:
       discovery:
         server-addr: 172.23.104.184

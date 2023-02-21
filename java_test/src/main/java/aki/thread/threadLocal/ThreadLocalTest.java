@@ -18,8 +18,10 @@ public class ThreadLocalTest {
         executorService.execute(() -> {//2
                     System.out.println(Thread.currentThread());
                     System.out.println(Thread.currentThread().getName() + "==>" + local.get());
+                    local.remove();
                 }
         );
+
         executorService.shutdown();
 
     }

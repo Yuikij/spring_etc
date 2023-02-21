@@ -7,11 +7,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
-import javax.annotation.Resource;
-
 @SpringBootApplication
 @EnableScheduling
-public class TestApplication {
+public class SpringIocApplication {
 
 
 //    @Autowired
@@ -24,7 +22,7 @@ public class TestApplication {
     private Lock sLock;
 
     public static void main(String[] args) {
-        SpringApplication.run(TestApplication.class, args);
+        SpringApplication.run(SpringIocApplication.class, args);
     }
 
 }

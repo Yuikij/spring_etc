@@ -1,4 +1,4 @@
-package aki.thread.CompletableFuture;
+package aki.thread.completableFuture;
 
 import java.util.concurrent.CompletableFuture;
 

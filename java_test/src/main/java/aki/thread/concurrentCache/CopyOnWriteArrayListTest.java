@@ -1,4 +1,4 @@
-package aki.thread.线程安全容器;
+package aki.thread.concurrentCache;
 
 import java.util.Vector;
 import java.util.concurrent.CopyOnWriteArrayList;

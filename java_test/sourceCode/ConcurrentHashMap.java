@@ -1013,16 +1013,20 @@ public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
         int binCount = 0;
         for (Node<K,V>[] tab = table;;) {
             Node<K,V> f; int n, i, fh;
+            /** init 初始化 */
             if (tab == null || (n = tab.length) == 0)
                 tab = initTable();
+            /** 桶为空*/
             else if ((f = tabAt(tab, i = (n - 1) & hash)) == null) {
                 if (casTabAt(tab, i, null,
                         new Node<K,V>(hash, key, value, null)))
                     break;                   // no lock when adding to empty bin
             }
+            /** hash是-1，说明node是ForwardingNode， 多线程帮助扩容 */
             else if ((fh = f.hash) == MOVED)
                 tab = helpTransfer(tab, f);
             else {
+                /** 同步锁 */
                 V oldVal = null;
                 synchronized (f) {
                     if (tabAt(tab, i) == f) {
@@ -2223,8 +2227,10 @@ public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
     private final Node<K,V>[] initTable() {
         Node<K,V>[] tab; int sc;
         while ((tab = table) == null || tab.length == 0) {
+            /** 自旋 */
             if ((sc = sizeCtl) < 0)
                 Thread.yield(); // lost initialization race; just spin
+            /** cas */
             else if (U.compareAndSwapInt(this, SIZECTL, sc, -1)) {
                 try {
                     if ((tab = table) == null || tab.length == 0) {
@@ -2293,6 +2299,10 @@ public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
 
     /**
      * Helps transfer if a resize is in progress.
+     *
+     * f ：命中的桶
+     * tab ；旧table
+     *
      */
     final Node<K,V>[] helpTransfer(Node<K,V>[] tab, Node<K,V> f) {
         Node<K,V>[] nextTab; int sc;
@@ -2366,11 +2376,14 @@ public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
      */
     private final void transfer(Node<K,V>[] tab, Node<K,V>[] nextTab) {
         int n = tab.length, stride;
+        /** n/8/ncpu 最小分成16段*/
         if ((stride = (NCPU > 1) ? (n >>> 3) / NCPU : n) < MIN_TRANSFER_STRIDE)
             stride = MIN_TRANSFER_STRIDE; // subdivide range
+        /**初始化*/
         if (nextTab == null) {            // initiating
             try {
                 @SuppressWarnings("unchecked")
+                /** 扩容2倍 */
                 Node<K,V>[] nt = (Node<K,V>[])new Node<?,?>[n << 1];
                 nextTab = nt;
             } catch (Throwable ex) {      // try to cope with OOME
