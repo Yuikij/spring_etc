@@ -9,8 +9,7 @@ import java.util.stream.Collectors;
 
 public class Test2 {
     public static void main(String[] args) {
-        ArrayList<OnStackTest.User> arrayList = new ArrayList<OnStackTest.User>();
-        arrayList.stream().sorted(Comparator.comparingInt(e -> e.id)).collect(Collectors.toList());
+
     }
 
 }

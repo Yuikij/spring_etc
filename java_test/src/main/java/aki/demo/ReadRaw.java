@@ -18,7 +18,7 @@ public class ReadRaw {
 //        test();
 //        File file = new File("C:\\Users\\SouKon\\Desktop\\raw\\data.raw");
         byte[] rawData;
-        InputStream inputStream = HttpClientUtils.getStreamForShiHui("http://" + "192.168.5.123" + "/raw",
+        InputStream inputStream = HttpClientUtils.getStreamForShiHui("http://" + "192.168.2.5" + "/raw",
                 "/raw", "admin", "admin");
         while (true) {
             System.out.println("enter loop");
