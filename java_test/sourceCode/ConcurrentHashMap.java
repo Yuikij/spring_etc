@@ -2311,6 +2311,7 @@ public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
             int rs = resizeStamp(tab.length);
             while (nextTab == nextTable && table == tab &&
                     (sc = sizeCtl) < 0) {
+                /** 判断table的状态 决定是否扩容*/
                 if ((sc >>> RESIZE_STAMP_SHIFT) != rs || sc == rs + 1 ||
                         sc == rs + MAX_RESIZERS || transferIndex <= 0)
                     break;
@@ -2376,7 +2377,7 @@ public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
      */
     private final void transfer(Node<K,V>[] tab, Node<K,V>[] nextTab) {
         int n = tab.length, stride;
-        /** n/8/ncpu 最小分成16段*/
+        /** n/8/ncpu 最小每段16个桶*/
         if ((stride = (NCPU > 1) ? (n >>> 3) / NCPU : n) < MIN_TRANSFER_STRIDE)
             stride = MIN_TRANSFER_STRIDE; // subdivide range
         /**初始化*/
@@ -2394,6 +2395,7 @@ public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
             transferIndex = n;
         }
         int nextn = nextTab.length;
+        /** 临时的node */
         ForwardingNode<K,V> fwd = new ForwardingNode<K,V>(nextTab);
         boolean advance = true;
         boolean finishing = false; // to ensure sweep before committing nextTab
