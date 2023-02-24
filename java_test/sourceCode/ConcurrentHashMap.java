@@ -933,15 +933,20 @@ public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
      */
     public V get(Object key) {
         Node<K,V>[] tab; Node<K,V> e, p; int n, eh; K ek;
+        /** h: 算hash */
         int h = spread(key.hashCode());
+        /** 找到了key的桶 */
         if ((tab = table) != null && (n = tab.length) > 0 &&
-                (e = tabAt(tab, (n - 1) & h)) != null) {
+                (e = tabAt(tab, (n - 1) & h)) != null) {        /** 赋值：e 桶 */
+                /** 桶的第一个匹配 */
             if ((eh = e.hash) == h) {
                 if ((ek = e.key) == key || (ek != null && key.equals(ek)))
                     return e.val;
             }
+            /** 特殊的桶，forward？ */
             else if (eh < 0)
                 return (p = e.find(h, key)) != null ? p.val : null;
+            /** 遍历查找 */
             while ((e = e.next) != null) {
                 if (e.hash == h &&
                         ((ek = e.key) == key || (ek != null && key.equals(ek))))
@@ -1026,7 +1031,7 @@ public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
             else if ((fh = f.hash) == MOVED)
                 tab = helpTransfer(tab, f);
             else {
-                /** 同步锁 */
+                /** 同步锁 锁的是桶 */
                 V oldVal = null;
                 synchronized (f) {
                     if (tabAt(tab, i) == f) {
@@ -2311,7 +2316,7 @@ public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
             int rs = resizeStamp(tab.length);
             while (nextTab == nextTable && table == tab &&
                     (sc = sizeCtl) < 0) {
-                /** 判断table的状态 决定是否扩容*/
+                /** 判断table的状态 决定是否扩容 */
                 if ((sc >>> RESIZE_STAMP_SHIFT) != rs || sc == rs + 1 ||
                         sc == rs + MAX_RESIZERS || transferIndex <= 0)
                     break;
@@ -2374,6 +2379,7 @@ public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
     /**
      * Moves and/or copies the nodes in each bin to new table. See
      * above for explanation.
+     * 新旧 table
      */
     private final void transfer(Node<K,V>[] tab, Node<K,V>[] nextTab) {
         int n = tab.length, stride;
@@ -2401,6 +2407,7 @@ public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
         boolean finishing = false; // to ensure sweep before committing nextTab
         for (int i = 0, bound = 0;;) {
             Node<K,V> f; int fh;
+            /** 修改了 TRANSFERINDEX */
             while (advance) {
                 int nextIndex, nextBound;
                 if (--i >= bound || finishing)
