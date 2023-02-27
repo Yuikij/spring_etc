@@ -4,7 +4,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
 /**
- * CompletableFuture<T>:
+ * CompletableFuture<T> static:
  * - supplyAsync: 异步立刻执行
  * - completedFuture: 不执行任务，直接返回 T
  *
