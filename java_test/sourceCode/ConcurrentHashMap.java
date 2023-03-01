@@ -2383,7 +2383,7 @@ public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
      */
     private final void transfer(Node<K,V>[] tab, Node<K,V>[] nextTab) {
         int n = tab.length, stride;
-        /** n/8/ncpu 最小每段16个桶*/
+        /** n/8/ncpu 最小每段16个桶 步长*/
         if ((stride = (NCPU > 1) ? (n >>> 3) / NCPU : n) < MIN_TRANSFER_STRIDE)
             stride = MIN_TRANSFER_STRIDE; // subdivide range
         /**初始化*/
@@ -2398,16 +2398,19 @@ public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
                 return;
             }
             nextTable = nextTab;
-            transferIndex = n;
+            transferIndex = n;             /** 初始值为旧table的长度 */
         }
         int nextn = nextTab.length;
         /** 临时的node */
         ForwardingNode<K,V> fwd = new ForwardingNode<K,V>(nextTab);
         boolean advance = true;
         boolean finishing = false; // to ensure sweep before committing nextTab
+
+        /** transferIndex表示了整个数组扩容的进度 */
+        /** 遍历旧talbe？ */
         for (int i = 0, bound = 0;;) {
             Node<K,V> f; int fh;
-            /** 修改了 TRANSFERINDEX */
+            /** 某些时机会 修改了 TRANSFERINDEX ： transferIndex-stride 表示需要完成的扩容 */
             while (advance) {
                 int nextIndex, nextBound;
                 if (--i >= bound || finishing)
@@ -2420,13 +2423,14 @@ public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
                         (this, TRANSFERINDEX, nextIndex,
                                 nextBound = (nextIndex > stride ?
                                         nextIndex - stride : 0))) {
-                    bound = nextBound;
+                    bound = nextBound;                                                         /** 把stride赋值给 nextBound bound*/
                     i = nextIndex - 1;
                     advance = false;
                 }
             }
             if (i < 0 || i >= n || i + n >= nextn) {
                 int sc;
+                /** 结束循环 */
                 if (finishing) {
                     nextTable = null;
                     table = nextTab;
@@ -2445,6 +2449,7 @@ public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
             else if ((fh = f.hash) == MOVED)
                 advance = true; // already processed
             else {
+                /** 锁节点 ，节点不是-1 ，旧talbe的节点  */
                 synchronized (f) {
                     if (tabAt(tab, i) == f) {
                         Node<K,V> ln, hn;
@@ -2473,6 +2478,13 @@ public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
                                 else
                                     hn = new Node<K,V>(ph, pk, pv, hn);
                             }
+                            /**
+                             * 也就是把tab[i]位置的链表或红黑树重新组装成两部分，
+                             * 一部分链接到nextTab[i]的位置，
+                             * 一部分链接到nextTab[i+n]的位置，
+                             * 然后把tab[i]的位置指向一个ForwardingNode节点。
+                             *
+                             * */
                             setTabAt(nextTab, i, ln);
                             setTabAt(nextTab, i + n, hn);
                             setTabAt(tab, i, fwd);

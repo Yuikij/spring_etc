@@ -1,5 +1,7 @@
 package aki.thread.ThreadPool;
 
+import aki.thread.commonClass.utils.Utils;
+
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ForkJoinPool;
@@ -9,6 +11,7 @@ public class CharCounter extends RecursiveTask<Map<Character, Integer>> {
     private final String str;
     private final int threshold;
 
+    /** 拆分的阈值，最小粒度 */
     public CharCounter(String str, int threshold) {
         this.str = str;
         this.threshold = threshold;
@@ -22,8 +25,13 @@ public class CharCounter extends RecursiveTask<Map<Character, Integer>> {
             int mid = str.length() / 2;
             CharCounter left = new CharCounter(str.substring(0, mid), threshold);
             CharCounter right = new CharCounter(str.substring(mid), threshold);
+            Utils.print("left.fork();",mid);
             left.fork();
-            Map<Character, Integer> rightResult = right.compute();
+            right.fork();
+            Utils.print("right.join();",mid);
+            Map<Character, Integer> rightResult = right.join();
+
+//            Map<Character, Integer> rightResult = right.compute();
             Map<Character, Integer> leftResult = left.join();
             mergeResults(leftResult, rightResult);
             return leftResult;
