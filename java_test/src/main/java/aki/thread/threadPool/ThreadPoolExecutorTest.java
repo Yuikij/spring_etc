@@ -1,6 +1,4 @@
-package aki.thread.ThreadPool;
-
-import aki.thread.commonClass.utils.Utils;
+package aki.thread.threadPool;
 
 import java.time.Duration;
 import java.time.Instant;

@@ -1,4 +1,4 @@
-package aki.thread.ThreadPool.blockQueue;
+package aki.thread.threadPool.blockQueue;
 
 import aki.thread.commonClass.utils.Utils;
 

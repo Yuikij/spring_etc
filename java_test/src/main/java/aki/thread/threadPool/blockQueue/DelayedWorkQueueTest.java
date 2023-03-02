@@ -1,6 +1,4 @@
-package aki.thread.ThreadPool.blockQueue;
-
-import java.util.concurrent.ScheduledThreadPoolExecutor;
+package aki.thread.threadPool.blockQueue;
 
 public class DelayedWorkQueueTest {
     public static void main(String[] args) {

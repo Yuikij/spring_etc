@@ -1,8 +1,6 @@
-package aki.thread.ThreadPool;
+package aki.thread.threadPool;
 
 import java.util.concurrent.*;
-
-import static java.util.concurrent.TimeUnit.NANOSECONDS;
 
 public class OtherPoolTest {
     public static void main(String[] args) {

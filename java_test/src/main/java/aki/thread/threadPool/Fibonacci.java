@@ -1,4 +1,4 @@
-package aki.thread.ThreadPool;
+package aki.thread.threadPool;
 
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveTask;
