@@ -1,4 +1,4 @@
-package aki.thread.ThreadPool.blockQueue;
+package aki.thread.threadPool.blockQueue;
 
 import java.util.concurrent.PriorityBlockingQueue;
 

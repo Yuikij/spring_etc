@@ -1,6 +1,5 @@
-package aki.thread.ThreadPool.blockQueue;
+package aki.thread.threadPool.blockQueue;
 
-import java.util.ArrayList;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class LinkedBlockingQueueTest {

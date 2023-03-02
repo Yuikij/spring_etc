@@ -1,4 +1,4 @@
-package aki.thread.ThreadPool;
+package aki.thread.threadPool;
 
 import aki.thread.commonClass.utils.Utils;
 
