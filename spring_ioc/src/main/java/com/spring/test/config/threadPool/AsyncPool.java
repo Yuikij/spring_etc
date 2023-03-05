@@ -9,7 +9,7 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.ThreadPoolExecutor;
 
 @Configuration
-public class asyncPool {
+public class AsyncPool {
 
     @Value("${thread.pool.core-pool-size: 10}")
     private int corePoolSize;
