@@ -12,46 +12,8 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 @SpringBootApplication
-@RestController
 public class MessageApplication {
     public static void main(String[] args) {
         SpringApplication.run(MessageApplication.class, args);
     }
-
-    @GetMapping("/qqq")
-    public void test(){
-
-    }
-
-    @Bean
-    public Function<String, String> toUpperCase() {
-        return String::toUpperCase;
-    }
-
-//    @Bean
-//    public Consumer<String> log2() {
-//        return response -> {
-//            System.out.println("Received: " + response);
-//        };
-//    }
-//    @Bean
-//    public Supplier<String> css() {
-//        return () -> "test Supplier";
-//    }
-
-
-
-    public static class Person {
-        private String name;
-        public String getName() {
-            return name;
-        }
-        public void setName(String name) {
-            this.name = name;
-        }
-        public String toString() {
-            return this.name;
-        }
-    }
-
 }

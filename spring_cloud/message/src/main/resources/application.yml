@@ -6,9 +6,8 @@ spring:
     port: 5672
     username: user
     password: password
-
   config:
-    import: nacos:gateway.yml,nacos:kubo-gateway-value.yml
+    import: nacos:kubo-message-value.yml
   application:
     name: kubo-message
   profiles:
@@ -16,15 +15,6 @@ spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
   cloud:
-    stream:
-      bindings:
-#        css-out-0:
-#          destination: css_test
-#          binder: rabbit
-#          group: css_test_queue
-        log2-in-0:
-#          group: hello1
-          destination: hello1
     nacos:
       discovery:
         server-addr: 172.23.104.184
