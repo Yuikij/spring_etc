@@ -6,7 +6,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
 public class JdkProxyTest {
-    interface IHello {
+    public interface IHello {
         void sayHello();
         default void sayBye(){
             System.out.println("bye");
@@ -25,7 +25,7 @@ public class JdkProxyTest {
 //        }
     }
 
-    static class IHelloImpl2 implements IHello {
+    public static class IHelloImpl2 implements IHello {
 
         @Override
         public void sayHello() {
@@ -56,9 +56,13 @@ public class JdkProxyTest {
 
         public static void main(String[] args) {
             System.getProperties().put("sun.misc.ProxyGenerator.saveGeneratedFiles", "true");
-
             IHello hello = (IHello) new DynamicProxy().bind(new IHelloImpl2());
             hello.sayHello();
         }
+    }
+
+    public static void main(String[] args) {
+        IHello hello = (IHello)JdkProxyUtils.getProxyObj(IHelloImpl2.class, () -> System.out.println("before"), () -> System.out.println("after"));
+        hello.sayHello();
     }
 }

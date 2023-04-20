@@ -1,5 +1,6 @@
 package aki.dynamicProxy.cglib;
 
+import aki.dynamicProxy.jdk.JdkProxyTest;
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;
@@ -8,7 +9,7 @@ import java.lang.reflect.Method;
 
 public class CglibTest {
 
-    static class IHelloImpl  {
+    static class IHelloImpl {
 
 
         public void sayHello() {
@@ -22,7 +23,6 @@ public class CglibTest {
 
 
     static class MyApiInterceptor implements MethodInterceptor {
-
         @Override
         public Object intercept(Object obj, Method method, Object[] args, MethodProxy proxy) throws Throwable {
             System.out.println("welcome"); // 此处可以做一些操作
@@ -30,15 +30,18 @@ public class CglibTest {
             System.out.println("end");  // 方法调用之后也可以进行一些操作
             return result;
         }
-
     }
 
-    public static void main(String[] args) {
-        Enhancer enhancer = new Enhancer();
-        enhancer.setSuperclass(IHelloImpl.class);
-        enhancer.setCallback(new MyApiInterceptor());
-        IHelloImpl hello = (IHelloImpl) enhancer.create();
-        hello.sayHello();
+//    public static void main(String[] args) {
+//        Enhancer enhancer = new Enhancer();
+//        enhancer.setSuperclass(IHelloImpl.class);
+//        enhancer.setCallback(new MyApiInterceptor());
+//        IHelloImpl hello = (IHelloImpl) enhancer.create();
+//        hello.sayHello();
+//    }
 
+    public static void main(String[] args) {
+        IHelloImpl proxyObj = (IHelloImpl) CglibUtils.getProxyObj(IHelloImpl.class, () -> System.out.println("before"), () -> System.out.println("after"));
+        proxyObj.sayHello();
     }
 }

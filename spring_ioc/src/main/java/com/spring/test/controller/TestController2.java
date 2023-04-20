@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,5 +22,10 @@ public class TestController2 {
             e.printStackTrace();
         }
         System.out.println("b");
+    }
+
+    @GetMapping("/{id}/2")
+    public void test2(@PathVariable("id") String id){
+        System.out.println(id);
     }
 }
