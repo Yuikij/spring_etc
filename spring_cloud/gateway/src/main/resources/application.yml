@@ -1,5 +1,5 @@
 server:
-  port: 9912
+  port: 9913
 spring:
   config:
     import: nacos:gateway.yml,nacos:kubo-gateway-value.yml
