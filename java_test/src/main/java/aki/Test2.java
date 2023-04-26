@@ -18,9 +18,7 @@ public class Test2 {
 //            System.out.println(e);
 //        });
 
-        integers.parallelStream().forEach(e->{
-            System.out.println(e);
-        });
+        integers.parallelStream().forEach(System.out::println);
 
     }
 

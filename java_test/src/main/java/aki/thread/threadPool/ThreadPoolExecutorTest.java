@@ -29,7 +29,7 @@ public class ThreadPoolExecutorTest {
      *      - DiscardOldestPolicy: 丢弃最旧的策略，即丢弃队列头部任务，重试execute
      *      - CallerRunsPolicy:占用调用线程直接运行
      *      - DiscardPolicy
-     *      - AbortPolicy
+     *      - AbortPolicy:拒绝并抛出异常
      *
      * ThreadFactory threadFactory:
      *      - DefaultThreadFactory
