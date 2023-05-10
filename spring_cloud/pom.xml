@@ -12,6 +12,7 @@
         <module>message</module>
         <module>gateway</module>
         <module>common</module>
+        <module>template</module>
     </modules>
 
     <properties>
