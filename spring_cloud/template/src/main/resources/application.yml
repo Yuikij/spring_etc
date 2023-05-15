@@ -3,6 +3,7 @@ server:
 spring:
   redis:
     host: 172.23.104.184
+    password:
   rabbitmq:
     host: 172.23.104.184
     port: 5672
