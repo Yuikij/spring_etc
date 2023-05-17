@@ -30,7 +30,8 @@ package aki.leetcode;
 public class Class_10 {
 
     public static void main(String[] args) {
-
+        boolean[][] b = new boolean[2][2];
+        System.out.println(b[0][0]);
     }
 
     public static boolean isMatch(String s, String p) {
@@ -38,8 +39,21 @@ public class Class_10 {
         int n = p.length();
         boolean[][] b = new boolean[m + 1][n + 1];
         b[0][0] = true;
-        for (int i = 0; i < m; i++) {
+        // 遍历s
+        for (int i = 1; i < m; i++) {
+            //比较s和p
+            for (int j = 0; j < n; j++) {
+                if (p.charAt(j + 1) == '*') {
 
+                    j++;
+
+                } else {
+                    //匹配下一位
+                    if (s.charAt(i) == p.charAt(j)) {
+                        b[i][j] = true;
+                    }
+                }
+            }
         }
 
         return b[m][n];
