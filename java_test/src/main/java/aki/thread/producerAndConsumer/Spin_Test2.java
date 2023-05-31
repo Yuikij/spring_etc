@@ -5,36 +5,44 @@ import aki.thread.commonClass.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Spin_Test {
+public class Spin_Test2 {
 
     static class Queue {
         static volatile List<Integer> list = new ArrayList<>();
         static final Object lock = new Object();
         static Integer get() {
             Integer res = null;
-            while (list.size() == 0) {
+            if (list.size() != 0) {
+                res = list.remove(0);
             }
-            res = list.remove(0);
+
             return res;
         }
 
-        static void set(Integer integer) {
-            while (list.size() != 0) {
+        static boolean set(Integer integer) {
+            if (list.size() == 0) {
+                list.add(integer);
+                return true;
             }
-            list.add(integer);
+            return false;
         }
 
 
         public static void main(String[] args) {
             Runnable set = () -> {
-                for (int i = 0; i < 10000000; i++) {
-                    Queue.set(i);
+                for (int i = 0; i < 10000; i++) {
+                    while (!Queue.set(i)){
+                        Queue.set(i);
+                    }
                 }
             };
 
             Runnable get = () -> {
                 while (true) {
-                    Integer integer = Queue.get();
+                    Integer integer = null;
+                    while (Queue.get()==null){
+                        integer = Queue.get();
+                    }
                     if (integer != null) {
                         System.out.println(integer);
                     }
