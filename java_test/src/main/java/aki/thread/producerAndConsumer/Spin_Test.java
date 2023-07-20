@@ -27,7 +27,8 @@ public class Spin_Test {
 
         public static void main(String[] args) {
             Runnable set = () -> {
-                for (int i = 0; i < 10000000; i++) {
+                Utils.sleep(1000);
+                for (int i = 0; i < 10000; i++) {
                     Queue.set(i);
                 }
             };
