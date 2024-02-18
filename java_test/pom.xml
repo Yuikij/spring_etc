@@ -11,6 +11,7 @@
     <modules>
         <module>java1.7</module>
         <module>java18</module>
+        <module>java1.8</module>
     </modules>
     <properties>
         <maven.compiler.source>${java.version}</maven.compiler.source>

@@ -13,6 +13,7 @@ public class Lifecycle {
                 Utils.print("sleep中线程状态", thread1.getState());
             });
             Utils.print("结束sleep线程状态", thread1.getState());
+            // 阻塞某个对象的锁，执行run方法，前后sleep一秒
             Utils.block(object,()->{
                 Utils.print("尝试获取锁线程状态", thread1.getState());
             });
@@ -26,6 +27,7 @@ public class Lifecycle {
         });
         Utils.print("start之前线程状态", thread.getState());
         thread.start();
+        //阻塞主线程，等到thread结束
         thread.join();
         Utils.print("start结束线程状态", thread.getState());
     }

@@ -11,7 +11,7 @@ import java.util.Map;
 
 @Data
 public class User {
-//    @JsonProperty("Name")
+    @JsonProperty("Name")
     private String Name;
     private Map<Integer, String> data;
     private List<Children> children;

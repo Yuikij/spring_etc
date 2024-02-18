@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.*;
 public class TestController3 {
 
     @PostMapping("/test3/user")
-    public void test1(@RequestBody User user){
+    public User test1(@RequestBody User user) {
         System.out.println(user);
+        return user;
     }
 }

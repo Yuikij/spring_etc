@@ -1,5 +1,7 @@
 package com.spring.test;
 
+
+import com.enbo.config.MyService;
 import com.spring.test.utils.CommonUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +18,12 @@ public class AutowiredTest {
     @Autowired
     private ThreadPoolTaskScheduler taskScheduler;
 
+    @Autowired
+    private MyService myService;
+
     @Test
     void test() {
-        System.out.println("lock");
+        myService.printMessage();
     }
     @Test
     void testScheduler() throws ExecutionException, InterruptedException {
