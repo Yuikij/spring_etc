@@ -1,8 +1,6 @@
 package aki.netty;
 
-import javax.xml.bind.DatatypeConverter;
 import java.nio.ByteBuffer;
-import java.util.Arrays;
 
 public class Test {
     public static void main(String[] args) {
