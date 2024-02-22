@@ -1,9 +1,7 @@
 package aki.JVM;
 
-import aki.thread.commonClass.utils.Utils;
+import aki.并发.commonClass.utils.Utils;
 import org.openjdk.jol.info.ClassLayout;
-
-import java.util.concurrent.locks.ReentrantLock;
 
 public class ObjLock {
     public static void main(String[] args) {

@@ -1,6 +1,6 @@
 package aki.dataStructure;
 
-import aki.thread.commonClass.utils.Utils;
+import aki.并发.commonClass.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
