@@ -14,10 +14,13 @@ public class AwaitTerminationTest {
             Executors.defaultThreadFactory(), new ThreadPoolExecutor.CallerRunsPolicy());
 
     public static void main(String[] args) throws InterruptedException {
-        Runnable work = () -> Utils.sleep(1000);
+        Runnable work = () -> Utils.sleep(10000,()->{
+            System.out.println("等待10s");
+        });
         executor.execute(work);
         executor.shutdown();
-        executor.awaitTermination(100,TimeUnit.DAYS);
-        System.out.println(123);
+        // 最多等待（阻塞） timeout 时间，返回结果：线程池有没有达到最终状态 TERMINATED
+        executor.awaitTermination(1,TimeUnit.SECONDS);
+        System.out.println("end");
     }
 }

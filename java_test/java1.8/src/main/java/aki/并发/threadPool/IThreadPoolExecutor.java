@@ -1,5 +1,7 @@
 package aki.并发.threadPool;
 
+import aki.并发.commonClass.utils.Utils;
+
 import java.util.concurrent.*;
 
 public class IThreadPoolExecutor extends ThreadPoolExecutor {
@@ -32,8 +34,10 @@ public class IThreadPoolExecutor extends ThreadPoolExecutor {
 
     @Override
     protected void terminated() {
-        if (runnable != null) {
-            runnable.run();
-        }
+        System.out.println("执行terminated");
+        Utils.sleep(10000,()->{
+            System.out.println("terminated:等待10s");
+        });
+        System.out.println("执行terminated 结束");
     }
 }
