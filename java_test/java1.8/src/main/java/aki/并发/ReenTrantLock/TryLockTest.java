@@ -1,6 +1,6 @@
 package aki.并发.ReenTrantLock;
 
-import aki.并发.commonClass.utils.Utils;
+import aki.common.utiles.ConcurrentUtils;
 
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -8,19 +8,19 @@ public class TryLockTest {
     static ReentrantLock reentrantLock = new ReentrantLock();
 
     public static void main(String[] args) {
-        Utils.multiRun(1, () -> {
+        ConcurrentUtils.multiRun(1, () -> {
             reentrantLock.lock();
-            Utils.print("lock");
-            Utils.sleep(2000);
+            ConcurrentUtils.print("lock");
+            ConcurrentUtils.sleep(2000);
             reentrantLock.unlock();
-            Utils.print("unlock");
+            ConcurrentUtils.print("unlock");
         });
-        Utils.sleep(500);
-        Utils.multiRun(1, () -> {
+        ConcurrentUtils.sleep(500);
+        ConcurrentUtils.multiRun(1, () -> {
             boolean tryLock = reentrantLock.tryLock();
-            Utils.print("tryLock", tryLock);
+            ConcurrentUtils.print("tryLock", tryLock);
             reentrantLock.lock();
-            Utils.print("lock");
+            ConcurrentUtils.print("lock");
         });
     }
 }

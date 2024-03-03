@@ -1,6 +1,6 @@
 package aki.并发.threadPool.blockQueue;
 
-import aki.并发.commonClass.utils.Utils;
+import aki.common.utiles.ConcurrentUtils;
 
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -13,13 +13,13 @@ public class PoolBlockTest {
         );
         Runnable runnable = ()->{
             String name = Thread.currentThread().getName();
-            Utils.print("start",name);
-            Utils.sleep(1000000);
-            Utils.print("end",name);
+            ConcurrentUtils.print("start",name);
+            ConcurrentUtils.sleep(1000000);
+            ConcurrentUtils.print("end",name);
         };
         threadPoolExecutor.execute(runnable);
         threadPoolExecutor.execute(runnable);
         threadPoolExecutor.execute(runnable);
-        Utils.print("executed");
+        ConcurrentUtils.print("executed");
     }
 }

@@ -1,7 +1,7 @@
 package aki.并发.threadPool;
 
 import aki.并发.commonClass.StopWatch;
-import aki.并发.commonClass.utils.Utils;
+import aki.common.utiles.ConcurrentUtils;
 import com.google.common.base.Stopwatch;
 
 import java.util.concurrent.Executors;
@@ -30,17 +30,17 @@ public class ScheduledThreadPoolTest {
 
 //周期性执行任务，间隔时间考虑任务时间
         scheduledExecutorService.scheduleAtFixedRate(() -> {
-            Utils.print("start 2 : " + stopwatch.elapsed().toMillis());
-            Utils.sleep(2000);
-            Utils.print("end 2 : " + stopwatch.elapsed().toMillis());
+            ConcurrentUtils.print("start 2 : " + stopwatch.elapsed().toMillis());
+            ConcurrentUtils.sleep(2000);
+            ConcurrentUtils.print("end 2 : " + stopwatch.elapsed().toMillis());
         },1,1L,TimeUnit.SECONDS);
 
 
 //周期性执行任务，间隔时间是两个任务的间隔
         scheduledExecutorService.scheduleWithFixedDelay(() -> {
-            Utils.print("start 3 : " + stopwatch.elapsed().toMillis());
-            Utils.sleep(2000);
-            Utils.print("end 3 : " + stopwatch.elapsed().toMillis());
+            ConcurrentUtils.print("start 3 : " + stopwatch.elapsed().toMillis());
+            ConcurrentUtils.sleep(2000);
+            ConcurrentUtils.print("end 3 : " + stopwatch.elapsed().toMillis());
         },1,1L,TimeUnit.SECONDS);
     }
 }

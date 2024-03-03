@@ -1,6 +1,6 @@
 package aki.并发.producerAndConsumer;
 
-import aki.并发.commonClass.utils.Utils;
+import aki.common.utiles.ConcurrentUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +21,7 @@ public class Lock_test {
 
         static final Object obj = new Object();
 
-        static Utils utils = new Utils(false);
+        static ConcurrentUtils utils = new ConcurrentUtils(false);
 
         static Integer get() throws InterruptedException {
             synchronized (obj) {
@@ -72,8 +72,8 @@ public class Lock_test {
                 }
             }
         };
-        Utils.multiRun(1, set);
-        Utils.multiRun(199, get);
+        ConcurrentUtils.multiRun(1, set);
+        ConcurrentUtils.multiRun(199, get);
     }
 
 

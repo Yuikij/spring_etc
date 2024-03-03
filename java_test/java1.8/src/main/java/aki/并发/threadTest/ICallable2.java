@@ -1,6 +1,6 @@
 package aki.并发.threadTest;
 
-import aki.并发.commonClass.utils.Utils;
+import aki.common.utiles.ConcurrentUtils;
 import com.google.common.base.Stopwatch;
 
 import java.util.concurrent.ExecutionException;
@@ -12,7 +12,7 @@ public class ICallable2 {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         FutureTask<String> task = new FutureTask<>(() -> {
-            Utils.sleep(1000);
+            ConcurrentUtils.sleep(1000);
             System.out.println("开始执行任务，计划返回：123");
             return "123";
         });

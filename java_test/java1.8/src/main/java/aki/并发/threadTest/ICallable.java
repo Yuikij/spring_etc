@@ -1,6 +1,6 @@
 package aki.并发.threadTest;
 
-import aki.并发.commonClass.utils.Utils;
+import aki.common.utiles.ConcurrentUtils;
 import com.google.common.base.Stopwatch;
 
 import java.time.Duration;
@@ -13,7 +13,7 @@ public class ICallable {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         FutureTask<String> task = new FutureTask<>(() -> {
-            Utils.sleep(1000);
+            ConcurrentUtils.sleep(1000);
             return "123";
         });
         stopwatch.start();
@@ -22,7 +22,7 @@ public class ICallable {
         //调用get()方法阻塞主线程
         String str = task.get();
         Duration elapsed = stopwatch.elapsed();
-        Utils.sleep(1000);
+        ConcurrentUtils.sleep(1000);
         Duration elapsed2 = stopwatch.elapsed();
         System.out.println("hello :" + str);
         System.out.println("time :" + elapsed.getSeconds());

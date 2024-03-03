@@ -1,6 +1,6 @@
 package aki.并发.threadPool;
 
-import aki.并发.commonClass.utils.Utils;
+import aki.common.utiles.ConcurrentUtils;
 
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveTask;
@@ -14,8 +14,8 @@ public class ForkJoinPoolTest extends RecursiveTask<String> {
 
     @Override
     protected String compute() {
-        Utils.sleep(1000);
-        Utils.print("thread:" + Thread.currentThread().getName());
+        ConcurrentUtils.sleep(1000);
+        ConcurrentUtils.print("thread:" + Thread.currentThread().getName());
         if (str.length() > 9) {
             System.out.println(str);
             return str;
@@ -37,9 +37,9 @@ public class ForkJoinPoolTest extends RecursiveTask<String> {
     }
 
     public static void main(String[] args) {
-        Utils.print("thread:" + Thread.currentThread().getName());
+        ConcurrentUtils.print("thread:" + Thread.currentThread().getName());
         ForkJoinPool forkJoinPool = new ForkJoinPool();
-        Utils.print("end", forkJoinPool.invoke(new ForkJoinPoolTest("base")));
+        ConcurrentUtils.print("end", forkJoinPool.invoke(new ForkJoinPoolTest("base")));
         System.out.println("---");
     }
 }

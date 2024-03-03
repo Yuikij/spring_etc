@@ -1,6 +1,6 @@
 package aki.并发.producerAndConsumer;
 
-import aki.并发.commonClass.utils.Utils;
+import aki.common.utiles.ConcurrentUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +49,7 @@ public class NG_test {
                 System.out.println(Queue.get());
             }
         };
-        Utils.multiRun(1, set);
-        Utils.multiRun(1, get);
+        ConcurrentUtils.multiRun(1, set);
+        ConcurrentUtils.multiRun(1, get);
     }
 }

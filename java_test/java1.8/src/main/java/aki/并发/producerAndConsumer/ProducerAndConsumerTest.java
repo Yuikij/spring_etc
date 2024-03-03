@@ -1,6 +1,6 @@
 package aki.并发.producerAndConsumer;
 
-import aki.并发.commonClass.utils.Utils;
+import aki.common.utiles.ConcurrentUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ public class ProducerAndConsumerTest {
 
     public static void main(String[] args) {
         ProducerAndConsumer<Integer> producerAndConsumer = new ProducerAndConsumer<>();
-        Utils utils = new Utils(true);
+        ConcurrentUtils utils = new ConcurrentUtils(true);
         Runnable get = () -> {
             while (true) {
                 producerAndConsumer.consumer(() -> {
@@ -29,7 +29,7 @@ public class ProducerAndConsumerTest {
             }
         };
 
-        Utils.multiRun(1, set);
-        Utils.multiRun(100, get);
+        ConcurrentUtils.multiRun(1, set);
+        ConcurrentUtils.multiRun(100, get);
     }
 }

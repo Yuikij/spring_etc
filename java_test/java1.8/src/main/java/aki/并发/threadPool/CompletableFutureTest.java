@@ -1,6 +1,6 @@
 package aki.并发.threadPool;
 
-import aki.并发.commonClass.utils.Utils;
+import aki.common.utiles.ConcurrentUtils;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
@@ -16,8 +16,8 @@ public class CompletableFutureTest {
         CompletableFuture<String> future = CompletableFuture.completedFuture("123");
 
         CompletableFuture<String> stringCompletableFuture = future.thenApplyAsync(str -> {
-            Utils.print("thenApply:", str);
-            Utils.sleep(1000);
+            ConcurrentUtils.print("thenApply:", str);
+            ConcurrentUtils.sleep(1000);
             return "thenApply";
         });
 //        System.out.println(12311);

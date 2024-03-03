@@ -1,4 +1,4 @@
-package aki.并发.commonClass.utils;
+package aki.common.utiles;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class Utils {
+public class ConcurrentUtils {
     private static final int COUNT_BITS = Integer.SIZE - 3;
     private static final int RUNNING = -1 << COUNT_BITS;
     private static final int SHUTDOWN = 0 << COUNT_BITS;
@@ -16,10 +16,10 @@ public class Utils {
 
     boolean isLog = true;
 
-    public Utils() {
+    public ConcurrentUtils() {
     }
 
-    public Utils(boolean isLog) {
+    public ConcurrentUtils(boolean isLog) {
         this.isLog = isLog;
     }
 
@@ -110,10 +110,33 @@ public class Utils {
         }
     }
 
+    /**
+     * 开times个线程作runnable
+     *
+     * @param times    次数
+     * @param runnable 方法
+     */
     public static void multiRun(int times, Runnable runnable) {
         for (int i = 0; i < times; i++) {
             new Thread(runnable).start();
         }
+    }
+
+    /**
+     * 开1个线程作times次runnable，间隔time毫秒
+     *
+     * @param times    次数
+     * @param runnable 方法
+     */
+    public static void oneMultiRun(int times, Runnable runnable, Long time) {
+        new Thread(() -> {
+            for (int i = 0; i < times; i++) {
+                if (time != null) {
+                    sleep(time);
+                }
+                runnable.run();
+            }
+        }).start();
     }
 
     /**

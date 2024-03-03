@@ -1,5 +1,7 @@
 package aki.并发.Final;
 
+import aki.common.utiles.ConcurrentUtils;
+
 public class finalTest {
     static Foo foo;
 
@@ -15,9 +17,11 @@ public class finalTest {
 
     public static void write() {
         foo = new Foo();
+        System.out.println("-----write-----");
     }
 
     public static void read() {
+        System.out.println("-----read-----");
         if (foo != null) {
             System.out.println(foo.a);
             System.out.println(foo.b);
@@ -25,6 +29,8 @@ public class finalTest {
     }
 
     public static void main(String[] args) {
-
+        ConcurrentUtils.oneMultiRun(10000,finalTest::read,null);
+        ConcurrentUtils.sleep(20);
+        write();
     }
 }

@@ -1,6 +1,6 @@
 package aki.并发.producerAndConsumer;
 
-import aki.并发.commonClass.utils.Utils;
+import aki.common.utiles.ConcurrentUtils;
 
 import java.util.concurrent.SynchronousQueue;
 
@@ -26,8 +26,8 @@ public class Abq_test {
                 }
             }
         };
-        Utils.multiRun(1, set);
-        Utils.multiRun(199, get);
+        ConcurrentUtils.multiRun(1, set);
+        ConcurrentUtils.multiRun(199, get);
     }
 
 

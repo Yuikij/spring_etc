@@ -1,6 +1,6 @@
 package aki.并发.ReadWriteLock;
 
-import aki.并发.commonClass.utils.Utils;
+import aki.common.utiles.ConcurrentUtils;
 
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
@@ -9,40 +9,40 @@ public class ReadWriteLockTest {
 
     public static void main(String[] args) throws InterruptedException {
 
-        Utils utils = new Utils();
+        ConcurrentUtils utils = new ConcurrentUtils();
 
-        Utils.multiRun(1,()->{
+        ConcurrentUtils.multiRun(1,()->{
             readWriteLock.readLock().lock();
             utils.log("start read",Thread.currentThread().getId());
-            Utils.sleep(8000);
+            ConcurrentUtils.sleep(8000);
             utils.log("end read",Thread.currentThread().getId());
             readWriteLock.readLock().unlock();
         });
-        Utils.multiRun(1,()->{
+        ConcurrentUtils.multiRun(1,()->{
             readWriteLock.readLock().lock();
             utils.log("start read",Thread.currentThread().getId());
-            Utils.sleep(6000);
+            ConcurrentUtils.sleep(6000);
             utils.log("end read",Thread.currentThread().getId());
             readWriteLock.readLock().unlock();
         });
-        Utils.multiRun(1,()->{
+        ConcurrentUtils.multiRun(1,()->{
             readWriteLock.writeLock().lock();
             utils.log("start write",Thread.currentThread().getId());
-            Utils.sleep(6000);
+            ConcurrentUtils.sleep(6000);
             utils.log("end write",Thread.currentThread().getId());
             readWriteLock.writeLock().unlock();
         });
-        Utils.multiRun(1,()->{
+        ConcurrentUtils.multiRun(1,()->{
             readWriteLock.readLock().lock();
             utils.log("start read",Thread.currentThread().getId());
-            Utils.sleep(6000);
+            ConcurrentUtils.sleep(6000);
             utils.log("end read",Thread.currentThread().getId());
             readWriteLock.readLock().unlock();
         });
-        Utils.multiRun(1,()->{
+        ConcurrentUtils.multiRun(1,()->{
             readWriteLock.writeLock().lock();
             utils.log("start write",Thread.currentThread().getId());
-            Utils.sleep(6000);
+            ConcurrentUtils.sleep(6000);
             utils.log("end write",Thread.currentThread().getId());
             readWriteLock.writeLock().unlock();
         });
