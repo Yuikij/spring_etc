@@ -1,6 +1,7 @@
 package aki.并发.threadPool;
 
-import aki.并发.commonClass.utils.Utils;
+
+import aki.common.utiles.ConcurrentUtils;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.Executors;
@@ -14,7 +15,7 @@ public class AwaitTerminationTest {
             Executors.defaultThreadFactory(), new ThreadPoolExecutor.CallerRunsPolicy());
 
     public static void main(String[] args) throws InterruptedException {
-        Runnable work = () -> Utils.sleep(10000,()->{
+        Runnable work = () -> ConcurrentUtils.sleep(10000,()->{
             System.out.println("等待10s");
         });
         executor.execute(work);

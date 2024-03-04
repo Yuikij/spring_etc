@@ -1,6 +1,8 @@
 package aki.common.utiles;
 
 import java.lang.reflect.Field;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -194,6 +196,16 @@ public class ConcurrentUtils {
         } catch (Exception e) {
             return state;
         }
+    }
+
+    public static void printStatus(String msg, ThreadPoolExecutor executor) {
+        System.out.println("-------------------线程池状态:" + msg + "-------------------");
+        System.out.printf("线程池大小:%d%n", executor.getPoolSize());
+        System.out.printf("核心线程池大小:%d%n", executor.getCorePoolSize());
+        System.out.printf("正在执行数量:%d%n", executor.getActiveCount());
+        System.out.printf("池中曾经同时存在的最大线程数:%d%n", executor.getLargestPoolSize());
+        System.out.printf("队列中的数量:%d%n", executor.getQueue().size());
+        System.out.println("----------------------------------------------");
     }
 
     public static void main(String[] args) {
