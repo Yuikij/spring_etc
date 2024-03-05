@@ -4,12 +4,14 @@ import com.spring.test.bean.BeanTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
 
 @RestController
-@RequestMapping("test")
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class TestController {
 
@@ -21,9 +23,22 @@ public class TestController {
         this.beanTest = beanTest;
     }
 
-    @GetMapping("/1")
-    public void test1(){
-        System.out.println(beanTest);
+    @PostMapping("/test")
+    public void test1(@RequestPart("MoveDetection.xml") MultipartFile file){
+        // 处理文件，您可以将文件保存到磁盘或进行其他操作
+        if (!file.isEmpty()) {
+            try {
+                String filePath = "D:\\456\\" + file.getOriginalFilename();
+                File dest = new File(filePath);
+                file.transferTo(dest);
+                System.out.println("File saved at: " + filePath);
+
+            } catch (Exception e) {
+
+            }
+        } else {
+
+        }
     }
 
 
