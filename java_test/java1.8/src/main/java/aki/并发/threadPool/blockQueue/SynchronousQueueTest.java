@@ -100,8 +100,47 @@ public class SynchronousQueueTest {
         });
     }
 
+    @Test
+    public static void testMultiPut() {
+        SynchronousQueue<String> synchronousQueue = new SynchronousQueue<>();
+//        第一次take 阻塞,先put也一样
+        for (int i = 0; i < 5; i++) {
+            int finalI = i;
+            ConcurrentUtils.multiRun(1,()->{
+                ConcurrentUtils.sleep(2000);
+                try {
+                    System.out.println("尝试put");
+                    synchronousQueue.put(finalI +"");
+                    System.out.println("put 结束");
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+        }
+        ConcurrentUtils.multiRun(5,()->{
+            ConcurrentUtils.sleep(2000);
+            try {
+                System.out.println("尝试put");
+                synchronousQueue.put("123");
+                System.out.println("put 结束");
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        System.out.println(123);
+        ConcurrentUtils.multiRun(1,()->{
+            ConcurrentUtils.sleep(2000);
+            try {
+                System.out.println("尝试put");
+                synchronousQueue.put("123");
+                System.out.println("put 结束");
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        });
+    }
 
     public static void main(String[] args) throws InterruptedException {
-        testOfferAndPoll();
+        testMultiPut();
     }
 }
