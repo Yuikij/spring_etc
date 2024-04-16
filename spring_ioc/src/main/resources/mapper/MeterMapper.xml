@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.test.TSDB.dao.MeterMapper">
+    <resultMap id="Meter" type="com.spring.test.TSDB.dao.Meter">
+        <result column="ts" property="ts"/>
+        <result column="current" property="current"/>
+        <result column="voltage" property="voltage"/>
+        <result column="phase" property="phase"/>
+        <result column="groupId" property="groupId"/>
+        <result column="f1" property="f1"/>
+        <result column="f2" property="f2"/>
+        <result column="f3" property="f3"/>
+        <result column="f4" property="f4"/>
+        <result column="f5" property="f5"/>
+        <result column="f6" property="f6"/>
+        <result column="f7" property="f7"/>
+        <result column="f8" property="f8"/>
+        <result column="f9" property="f9"/>
+        <result column="f10" property="f10"/>
+    </resultMap>
+
+    <insert id="create">
+        CREATE TABLE IF NOT EXISTS #{tableName, jdbcType=VARCHAR} USING meters TAGS
+        (#{meter.groupId, jdbcType=INTEGER}, #{meter.location, jdbcType=VARCHAR})
+    </insert>
+
+    <insert id="save">
+        INSERT INTO #{tableName}
+        VALUES (#{meter.ts}, #{meter.current}, #{meter.voltage}, #{meter.phase},
+                #{meter.f1}, #{meter.f2}, #{meter.f3}, #{meter.f4}, #{meter.f5}, #{meter.f6},
+                #{meter.f7}, #{meter.f8}, #{meter.f9}, #{meter.f10});
+    </insert>
+
+    <select id="lastRow" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT last_row(*) FROM #{tableName} ;
+    </select>
+
+
+    <select id="intervalList" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT * FROM tdtest ;
+    </select>
+</mapper>
