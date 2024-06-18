@@ -6,6 +6,7 @@ import org.springframework.util.StopWatch;
 
 import javax.annotation.Resource;
 import java.util.concurrent.Executor;
+import java.util.concurrent.FutureTask;
 
 @SpringBootTest
 class TestApplicationTests {
@@ -37,6 +38,14 @@ class TestApplicationTests {
             }
             System.out.println(22);
         });
+
+        FutureTask<String> task = new FutureTask<>(() -> {
+            System.out.println("开始执行任务，计划返回：123");
+            return "123";
+        });
+        threadPool.execute(task);
+        task.cancel(true);
+
 
 //        new Thread(()->{
 //            try {
