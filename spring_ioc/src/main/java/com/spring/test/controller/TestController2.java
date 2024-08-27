@@ -1,13 +1,9 @@
 package com.spring.test.controller;
 
-import com.spring.test.bean.BeanTest;
+import com.alibaba.fastjson.JSONObject;
+import com.spring.test.bean.多态.Base;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Scope;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("test2")
@@ -27,5 +23,10 @@ public class TestController2 {
     @GetMapping("/{id}/2")
     public void test2(@PathVariable("id") String id){
         System.out.println(id);
+    }
+
+    @PostMapping("/3")
+    public <T extends Base> void  test3(@RequestBody JSONObject obj){
+        System.out.println(obj);
     }
 }

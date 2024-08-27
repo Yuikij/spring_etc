@@ -1,6 +1,8 @@
 package com.spring.test;
 
+import com.spring.test.bean.多态.Base;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.util.StopWatch;
 
@@ -10,7 +12,8 @@ import java.util.concurrent.FutureTask;
 
 @SpringBootTest
 class TestApplicationTests {
-
+    @Autowired
+    private Base base;
 
     @Resource(name = "threadPool")
     private Executor threadPool;
@@ -63,6 +66,12 @@ class TestApplicationTests {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Test
+    public void testBean(){
+        Base base1 = base;
+        System.out.println(base1);
     }
 
 }
