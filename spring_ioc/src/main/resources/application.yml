@@ -1,7 +1,13 @@
 
 server:
   port: 8082
-
+  servlet:
+    session:
+      cookie:
+        http-only: false # 防止客户端脚本访问Cookie，增加安全性
+        secure: false # 仅在HTTPS连接中传输Cookie
+        path: / # 设置Cookie的路径
+        name: JSESSIONID # 设置Cookie名称
 #trace=true
 
 
@@ -31,3 +37,4 @@ mybatis:
 
 mystarter:
   message: Hello from My Starter!
+
