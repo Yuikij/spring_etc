@@ -10,6 +10,6 @@ import static org.springframework.beans.factory.config.ConfigurableBeanFactory.S
 @Scope(SCOPE_PROTOTYPE)
 @Data
 public class PrototypeBean {
-    private String name = "prototypeBean";
-    private String field = "bean";
+    private String name = "PrototypeBean";
+    private String field = "PrototypeBean";
 }

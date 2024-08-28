@@ -1,9 +1,11 @@
 package com.spring.test.lab.springBean.bean的作用域;
 
+import com.spring.test.lab.springBean.bean的作用域.bean.ApplicationBean;
 import com.spring.test.lab.springBean.bean的作用域.controller.BeanScopeController;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpCookie;
@@ -17,13 +19,18 @@ import javax.servlet.http.Cookie;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(controllers = BeanScopeController.class)
+//@WebMvcTest(controllers = BeanScopeController.class)
+@SpringBootTest
+@AutoConfigureMockMvc
 @Log4j2
 public class LabTest {
 
 
     @Autowired
     private MockMvc mockMvc;
+
+    @Autowired
+    private ApplicationBean applicationBean;
 
     @Test
     void runTest() throws Exception {
@@ -47,5 +54,6 @@ public class LabTest {
         ).andDo((result)->{
             log.info(result.getResponse().getContentAsString());
         }).andExpect(status().isOk());
+
     }
 }

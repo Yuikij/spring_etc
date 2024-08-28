@@ -1,30 +1,27 @@
 package com.spring.test.lab.springBean.bean的作用域;
 
-import com.spring.test.lab.springBean.bean的作用域.bean.PrototypeBean;
-import com.spring.test.lab.springBean.bean的作用域.bean.SingletonBean;
+import com.spring.test.lab.springBean.bean的作用域.bean.ApplicationBean;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 @Component
+@Slf4j
 public class TestRunner implements CommandLineRunner {
-    @Autowired
-    private SingletonBean singletonBean;
-    @Autowired
-    private PrototypeBean prototypeBean;
-    @Autowired
-    private PrototypeBean prototypeBean2;
-    @Autowired
-    private SingletonBean singletonBean2;
 
+    @Autowired
+    private ApplicationBean applicationBean;
+    private final ApplicationContext applicationContext;
+
+    public TestRunner(ApplicationContext applicationContext) {
+        this.applicationContext = applicationContext;
+    }
     @Override
-    public void run(String... args) throws Exception {
-        System.out.println("开始执行bean作用域实验");
-        System.out.println("singletonBean: " + singletonBean);
-        System.out.println("prototypeBean: " + prototypeBean);
-        singletonBean.setField("changed");
-        prototypeBean.setField("changed");
-        System.out.println("prototypeBean2: " + prototypeBean2);
-        System.out.println("singletonBean2: " + singletonBean2);
+    public void run(String... args) {
+        System.out.println(applicationContext.getApplicationName());
+        log.info("CommandLineRunner 上下文中的 ApplicationBean:{}",applicationBean.getField());
+        applicationBean.setField("ApplicationBeanChanged");
     }
 }

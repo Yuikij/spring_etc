@@ -11,5 +11,5 @@ import static org.springframework.beans.factory.config.ConfigurableBeanFactory.S
 @Data
 public class SingletonBean {
     private String name = "SingletonBean";
-    private String field = "bean";
+    private String field = "SingletonBean";
 }
