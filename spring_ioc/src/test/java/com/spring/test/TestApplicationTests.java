@@ -1,10 +1,12 @@
 package com.spring.test;
 
 import com.spring.test.bean.多态.Base;
+import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.util.StopWatch;
+import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
 import java.util.concurrent.Executor;
@@ -28,6 +30,12 @@ class TestApplicationTests {
         Thread.sleep(1000);
         stopWatch.stop();
         System.out.println(stopWatch);
+    }
+
+    @Test
+    void testRest() {
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.getForObject("http://localhost:8080", JSONObject.class);
     }
 
     @Test

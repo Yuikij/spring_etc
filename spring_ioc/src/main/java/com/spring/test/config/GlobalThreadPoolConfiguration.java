@@ -6,12 +6,8 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.concurrent.*;
 
-/**
- *
- * @author sean.zhou
- * @date 2021/11/10
- * @version 0.1
- */
+
+
 @Configuration
 public class GlobalThreadPoolConfiguration {
 
