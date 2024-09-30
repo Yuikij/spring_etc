@@ -13,9 +13,9 @@ public enum AllDicEnum {
     /* 字典类型 */
     private final String type;
     private final String desc;
-    private final Class dicEnumInterface;
+    private final Class<? extends DicEnumInterface> dicEnumInterface;
 
-    AllDicEnum(String type, String desc, Class<?> dicEnumInterface) {
+    AllDicEnum(String type, String desc, Class<? extends DicEnumInterface> dicEnumInterface) {
         this.type = type;
         this.desc = desc;
         this.dicEnumInterface = dicEnumInterface;
@@ -31,5 +31,9 @@ public enum AllDicEnum {
             }
         }
         return list;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(findByType("animal"));
     }
 }

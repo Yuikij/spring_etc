@@ -26,7 +26,7 @@ public interface DicEnumInterface {
      * @param enumClass 枚举类的Class对象
      * @return 返回枚举指定字段值的列表
      */
-    static <E extends Enum<E> & DicEnumInterface> List<DicEnumVO> getDicVo(Class<E> enumClass) {
+    static <E extends DicEnumInterface> List<DicEnumVO> getDicVo(Class<E> enumClass) {
         List<DicEnumVO> list = new ArrayList<>();
         for (E enumConstant : enumClass.getEnumConstants()) {
             DicEnumVO resourceDicStrVo = enumConstant.getResourceDicStrVo();
