@@ -15,13 +15,14 @@ public class CompletableFutureTest {
 
         CompletableFuture<String> future = CompletableFuture.completedFuture("123");
 
-        CompletableFuture<String> stringCompletableFuture = future.thenApplyAsync(str -> {
-            ConcurrentUtils.print("thenApply:", str);
+        CompletableFuture<String> stringCompletableFuture = CompletableFuture.supplyAsync(() -> {
+            System.out.println(Thread.currentThread().getName());
+//            ConcurrentUtils.print("thenApply:", str);
             ConcurrentUtils.sleep(1000);
             return "thenApply";
         });
 //        System.out.println(12311);
-        stringCompletableFuture.complete("13344");
+//        stringCompletableFuture.complete("13344");
         System.out.println(stringCompletableFuture.get());
 
 //        CompletableFuture<String> thenApplyAsync = thenApply.thenApplyAsync(str -> {

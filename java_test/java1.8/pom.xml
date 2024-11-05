@@ -25,6 +25,11 @@
             <artifactId>easyexcel</artifactId>
             <version>4.0.1</version>
         </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-http</artifactId>
+            <version>5.8.32</version>
+        </dependency>
     </dependencies>
 
 </project>
