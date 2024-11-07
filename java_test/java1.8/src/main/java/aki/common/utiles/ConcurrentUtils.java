@@ -5,7 +5,10 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.PriorityBlockingQueue;
+import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class ConcurrentUtils {
@@ -16,9 +19,14 @@ public class ConcurrentUtils {
     private static final int TIDYING = 2 << COUNT_BITS;
     private static final int TERMINATED = 3 << COUNT_BITS;
 
+    private static final ThreadPoolExecutor commonThreadPoolExecutor =
+            new ThreadPoolExecutor(5, 10, 10, TimeUnit.SECONDS, new SynchronousQueue<>());
+
+
     boolean isLog = true;
 
     public ConcurrentUtils() {
+
     }
 
     public ConcurrentUtils(boolean isLog) {

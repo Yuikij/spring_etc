@@ -18,7 +18,7 @@ public class Test2 {
         HashMap<String,String> map = new HashMap<>();
         ConcurrentHashMap<String,String> concurrentHashMap = new ConcurrentHashMap<>();
         System.out.println(map.containsKey(null));
-//        concurrentHashMap.compute()
+//        concurrentHashMap.putIfAbsent()
 
     }
     public static void test2() {
